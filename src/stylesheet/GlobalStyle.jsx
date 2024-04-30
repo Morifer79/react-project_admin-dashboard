@@ -12,16 +12,17 @@ export const GlobalStyle = createGlobalStyle`
   
   html,
   body {
-    scrollbar-gutter: stable;
-    box-sizing: border-box;
-    font-family: "Gilroy", sans-serif;
+    background: ${theme.colors.light};
+    color: ${theme.colors.main};
+    font-family: "Inter", sans-serif;
     font-size: 16px;
     font-weight: 500;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: ${theme.colors.main};
-    color: ${theme.colors.light};
+    scrollbar-gutter: stable;
+    box-sizing: border-box;
+
     ::-webkit-scrollbar {
       inline-size: 5px;
     }
@@ -40,10 +41,6 @@ export const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-thumb:hover {
       background: rgba(18, 20, 23, 0.05);
     }
-  }
-
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
 
   h1,h2,h3,h4,h5,h6,p {
@@ -77,7 +74,7 @@ export const GlobalStyle = createGlobalStyle`
   input:-webkit-autofill,
   input:-webkit-autofill:hover, 
   input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0px 1000px ${theme.colors.secondary} inset;
-  -webkit-text-fill-color: ${theme.colors.light};
+  -webkit-box-shadow: 0 0 0px 1000px ${theme.colors.light} inset;
+  -webkit-text-fill-color: ${theme.colors.main};
   }
 `;

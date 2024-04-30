@@ -1,11 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import { GlobalStyle } from 'stylesheet/GlobalStyle';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { App } from './App.jsx';
+import { GlobalStyle } from './stylesheet/GlobalStyle.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from 'styled-components';
-import { theme } from 'stylesheet/theme';
+import { theme } from './stylesheet/theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
