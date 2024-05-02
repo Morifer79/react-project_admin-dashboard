@@ -2,6 +2,7 @@ export const theme = {
   colors: {
     main: '#1D1E21',
     primary: '#59B17A',
+    primaryhover: '#3F945F',
     secondary: '#F7F8FA',
     tablehead: '#E7F1ED',
     icon: '#DCDDDF',

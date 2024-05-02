@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   
   html,
   body {
-    background: ${theme.colors.light};
+    background: transparent;
     color: ${theme.colors.main};
     font-family: "Inter", sans-serif;
     font-size: 16px;
@@ -66,6 +66,7 @@ export const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
+    border: none;
 		font-family: inherit;
 		padding: 0;
 		margin: 0;
