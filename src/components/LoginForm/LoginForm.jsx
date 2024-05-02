@@ -8,6 +8,7 @@ import {
   StyledInput,
   Title,
 } from './LoginForm.styled';
+import { Container } from '../Constructor/Container/Container';
 import { useForm } from 'react-hook-form';
 import { StyledButton } from '../StyledButton/StyledButton';
 import { useState } from 'react';
@@ -54,7 +55,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <>
+    <Container>
       <LogoBox>
         <img src={logo} alt="logo" />
         <span>E-Pharmacy</span>
@@ -100,6 +101,6 @@ export const LoginForm = () => {
         </StyledForm>
       </FlexBox>
       <BgImg />
-    </>
+    </Container>
   );
 };

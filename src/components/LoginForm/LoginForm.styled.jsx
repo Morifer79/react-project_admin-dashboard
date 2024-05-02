@@ -17,7 +17,7 @@ export const LogoBox = styled.div`
   @media (width > 767px) {
     margin-block-end: 204px;
   }
-  @media (width > 767px) {
+  @media (width > 1439px) {
     margin-block: 28px 226px;
   }
   img {

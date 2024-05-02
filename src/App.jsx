@@ -5,6 +5,10 @@ import { lazy } from 'react';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const OrderPage = lazy(() => import('./pages/OrderPage'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const CustomersPage = lazy(() => import('./pages/CustomersPage'));
+const SuppliersPage = lazy(() => import('./pages/SuppliersPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export const App = () => {
@@ -14,10 +18,10 @@ export const App = () => {
         <Route index element={<HomePage />} />
         <Route path="login" element={<RegisterPage />} />
         <Route path="dashboard" element={<DashboardPage />} />
-        {/* <Route path="orders" element={<OrderPage />} />
+        <Route path="orders" element={<OrderPage />} />
         <Route path="products" element={<ProductsPage />} />
         <Route path="customers" element={<CustomersPage />} />
-        <Route path="suppliers" element={<SuppliersPage />} /> */}
+        <Route path="suppliers" element={<SuppliersPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

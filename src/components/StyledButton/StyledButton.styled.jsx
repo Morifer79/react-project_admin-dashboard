@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { theme } from "../../stylesheet/theme";
+import { theme } from '../../stylesheet/theme';
 
 export const Button = styled.button`
   display: flex;
@@ -23,9 +23,9 @@ export const Button = styled.button`
     $variant === 'login' &&
     css`
       @media screen and (max-width: 767px) {
-        padding: 13px 147px;
+        padding: ${theme.spacing(6.5)} ${theme.spacing(73.5)};
       }
-      padding: 13px 141px;
+      padding: ${theme.spacing(6.5)} ${theme.spacing(70.5)};
     `};
 
   ${({ $variant }) =>
@@ -35,27 +35,27 @@ export const Button = styled.button`
         font-size: 12px;
         line-height: 1.5;
       }
-      padding: 13px 30px;
+      padding: ${theme.spacing(6.5)} ${theme.spacing(15)};
     `};
   ${({ $variant }) =>
     $variant === 'add' &&
     css`
       @media screen and (max-width: 767px) {
-        padding: 13px 61px;
+        padding: ${theme.spacing(6.5)} ${theme.spacing(30.5)};
         font-size: 12px;
         line-height: 1.5;
       }
-      padding: 13px 52px;
+      padding: ${theme.spacing(6.5)} ${theme.spacing(26)};
     `};
   ${({ $variant }) =>
     $variant === 'cancel' &&
     css`
       @media screen and (max-width: 767px) {
-        padding: 12px 49px;
+        padding: ${theme.spacing(6)} ${theme.spacing(24.5)};
         font-size: 12px;
         line-height: 1.5;
       }
-      padding: 12px 42px;
+      padding: ${theme.spacing(6)} ${theme.spacing(21)};
       border: 1px solid transparent;
       background-color: #1d1e2119;
       color: #1d1e2166;
@@ -69,11 +69,11 @@ export const Button = styled.button`
     $variant === 'save' &&
     css`
       @media screen and (max-width: 767px) {
-        padding: 13px 59px;
+        padding: ${theme.spacing(6.5)} ${theme.spacing(29.5)};
         font-size: 12px;
         line-height: 1.5;
       }
-      padding: 13px 50px;
+      padding: ${theme.spacing(6.5)} ${theme.spacing(25)};
     `};
   ${({ $variant }) =>
     $variant === 'add-sup' &&
@@ -82,7 +82,7 @@ export const Button = styled.button`
         font-size: 12px;
         line-height: 1.5;
       }
-      padding: 13px 30px;
+      padding: ${theme.spacing(6.5)} ${theme.spacing(15)};
       border: 1px solid #59b17a7f;
       background-color: transparent;
       color: ${theme.colors.main};

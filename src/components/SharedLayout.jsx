@@ -1,27 +1,22 @@
 import { Suspense } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Loader } from "./Loader";
+import { Header } from "./Header/Header";
 
 const GlobalContainer = styled.div`
   margin-inline: auto;
-  inline-size: 375px;
-  padding-inline: 20px;
-
-  @media (width > 767px) {
-    inline-size: 768px;
-    padding-inline: 32px;
-  }
-
-  @media (width > 1439px) {
-    inline-size: 1440px;
-    padding-inline: 40px;
-  }
 `;
 
 export const SharedLayout = () => {
+  const location = useLocation();
+  const userLocation =
+    location.pathname === '/login' ||
+    location.pathname === '/*';
+
   return (
     <GlobalContainer>
+      {!userLocation && <Header />}
       <main>
         <Suspense fallback={<Loader />}>
           <Outlet />
