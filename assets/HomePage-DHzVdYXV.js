@@ -1,0 +1,1 @@
+import{j as e,N as n}from"./index-9EYloE8m.js";function o(){return e.jsxs(e.Fragment,{children:[e.jsx("div",{children:"HOME PAGE"}),e.jsx(n,{to:"/login",children:"to login page"})]})}export{o as default};
