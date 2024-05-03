@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   
   html,
   body {
-    background: transparent;
+    background: ${theme.colors.secondary};
     color: ${theme.colors.main};
     font-family: "Inter", sans-serif;
     font-size: 16px;
@@ -28,13 +28,13 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     ::-webkit-scrollbar-track {
-      background: rgba(18, 20, 23, 0.05);
+      background: rgb(241, 241, 241);
       inline-size: 3px;
       border-radius: 10px;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: ${theme.colors.brd};
+      background: rgb(230, 230, 230);
       border-radius: 10px;
     }
 

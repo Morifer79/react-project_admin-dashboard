@@ -1,3 +1,3 @@
-export const OrderPage = () => {
+export default function OrderPage() {
   return <div>Order Page</div>
-};
+}

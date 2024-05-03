@@ -9,6 +9,7 @@ export const SidebarNav = styled.nav`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 3;
 
   display: flex;
   flex-direction: column;
@@ -16,8 +17,8 @@ export const SidebarNav = styled.nav`
 
   inline-size: 78px;
   block-size: 100%;
-  background-color: ${theme.colors.secondary};
   border: 1px solid #1d1e2119;
+  background-color: ${theme.colors.secondary};
 
   animation: fade-in 0.8s ease-in-out;
   @keyframes fade-in {
@@ -58,9 +59,14 @@ export const SidebarNav = styled.nav`
     inline-size: 38px;
     block-size: 38px;
 
+    cursor: pointer;
     background-color: ${theme.colors.light};
     border-radius: ${theme.radii.xl};
     box-shadow: 0px -1px 7px 0px rgba(71, 71, 71, 0.05);
+
+    &:is(:hover, :focus, .active) svg {
+      fill: ${theme.colors.primary};
+    }
 
     @media (width > 767px) {
       inline-size: 44px;
@@ -70,15 +76,11 @@ export const SidebarNav = styled.nav`
 `;
 
 export const StyledLink = styled(NavLink)`
-  &:is(:hover, :focus, .active) svg {
-    stroke: ${theme.colors.primary};
-  }
-
   svg {
     inline-size: 12px;
     block-size: 12px;
-    stroke: ${theme.colors.icon};
-    transition: stroke ${theme.transition};
+    fill: ${theme.colors.icon};
+    transition: fill ${theme.transition};
 
     @media (width > 767px) {
       inline-size: 16px;

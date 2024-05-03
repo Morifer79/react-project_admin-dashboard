@@ -6,7 +6,6 @@ export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #1d1e2119;
-  background-color: ${theme.colors.secondary};
 
   @media (width > 767px) {
     padding: ${theme.spacing(7.5)} ${theme.spacing(18)};
@@ -19,7 +18,7 @@ export const HeaderWrapper = styled.div`
 
 export const BtnMenu = styled.button`
   margin-inline-end: ${theme.spacing(10)};
-  z-index: 1;
+  z-index: 5;
   svg {
     inline-size: 32px;
     block-size: 32px;

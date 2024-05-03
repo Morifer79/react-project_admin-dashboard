@@ -10,33 +10,59 @@ import {
 } from './Header.styled';
 import logo from '../../assets/logo.png';
 import sprite from '../../assets/sprite.svg';
+import { NavLink, useLocation } from 'react-router-dom';
 
 export const Header = () => {
-  const [openMenu, setOpenMenu] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(prevMenuOpen => !prevMenuOpen);
+    isMenuOpen
+      ? (document.body.style.overflowY = 'auto')
+      : (document.body.style.overflowY = 'hidden');
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    document.body.style.overflowY = 'auto';
+  };
+
+  const pageTitleMap = {
+    '/dashboard': 'Dasboard',
+    '/orders': 'All orders',
+    '/products': 'All products',
+    '/suppliers': 'All suppliers',
+    '/customers': 'All customers',
+  };
+
+  const location = useLocation();
+  const user = pageTitleMap[location.pathname] || 'Home page';
 
   return (
     <HeaderWrapper>
-      {openMenu ? (
+      {isMenuOpen ? (
         <>
-          <BtnMenu onClick={() => setOpenMenu(false)}>
+          <BtnMenu onClick={toggleMenu}>
             <svg>
               <use href={`${sprite}#icon-close`} />
             </svg>
           </BtnMenu>
-          <SidebarMenu />
+          <SidebarMenu onClose={closeMenu} />
         </>
       ) : (
-        <BtnMenu onClick={() => setOpenMenu(true)}>
+        <BtnMenu onClick={toggleMenu}>
           <svg>
             <use href={`${sprite}#icon-menu`} />
           </svg>
         </BtnMenu>
       )}
 
-      <Logo src={logo} alt="logo" />
+      <NavLink to="/">
+        <Logo src={logo} alt="logo" />
+      </NavLink>
       <div>
         <Title>Medicine store</Title>
-        <SubTitle>текущая страница | почта админа</SubTitle>
+        <SubTitle>{user} | почта админа</SubTitle>
       </div>
       <BtnLogout>
         <svg>
