@@ -8,6 +8,7 @@ import {
   TableBodyThumb,
   Wrapper,
 } from './RecentCustomTable.styled';
+import noImg from '../../../assets/noImg.png';
 import data from './customers.json';
 import data2 from './income_expenses.json';
 
@@ -33,7 +34,7 @@ export const RecentCustomersTable = () => {
             {data.map((item, index) => (
               <tr key={index}>
                 <FirstRow>
-                  <img src={item.image} alt="user" />
+                  <img src={item.photo ? item.photo : noImg} alt="user" />
                   <span>{item.name}</span>
                 </FirstRow>
                 <td>{item.email}</td>

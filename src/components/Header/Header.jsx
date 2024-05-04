@@ -62,7 +62,7 @@ export const Header = () => {
       </NavLink>
       <div>
         <Title>Medicine store</Title>
-        <SubTitle>{user} | почта админа</SubTitle>
+        <SubTitle>{user} | vendor@gmail.com</SubTitle>
       </div>
       <BtnLogout>
         <svg>

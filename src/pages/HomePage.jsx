@@ -1,7 +1,9 @@
+import { Orders } from "../components/Orders/Orders";
+
 export default function HomePage() {
   return (
     <>
-      Home
+      <Orders/>
     </>
   );
 }
