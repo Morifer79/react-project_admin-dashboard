@@ -8,8 +8,8 @@
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M1.333 16c0 0 5.333-10.667 14.667-10.667s14.667 10.667 14.667 10.667c0 0-5.333 10.667-14.667 10.667s-14.667-10.667-14.667-10.667z"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 20c2.209 0 4-1.791 4-4s-1.791-4-4-4c-2.209 0-4 1.791-4 4s1.791 4 4 4z"></path>
 </symbol>
-<symbol id="icon-add" viewBox="0 0 32 32">
-<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M28 16h-24M16 4v0z"></path>
+<symbol id="icon-plus" viewBox="0 0 32 32">
+<path d="M16 8c0.265 0 0.52 0.105 0.707 0.293s0.293 0.442 0.293 0.707v6h6c0.265 0 0.52 0.105 0.707 0.293s0.293 0.442 0.293 0.707-0.105 0.52-0.293 0.707c-0.188 0.188-0.442 0.293-0.707 0.293h-6v6c0 0.265-0.105 0.52-0.293 0.707s-0.442 0.293-0.707 0.293-0.52-0.105-0.707-0.293c-0.188-0.188-0.293-0.442-0.293-0.707v-6h-6c-0.265 0-0.52-0.105-0.707-0.293s-0.293-0.442-0.293-0.707c0-0.265 0.105-0.52 0.293-0.707s0.442-0.293 0.707-0.293h6v-6c0-0.265 0.105-0.52 0.293-0.707s0.442-0.293 0.707-0.293z"></path>
 </symbol>
 <symbol id="icon-calendar" viewBox="0 0 32 32">
 <path fill="none" stroke="#59b17a" style="stroke: var(--color2, #59b17a)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M25.333 5.332h-18.667c-1.473 0-2.667 1.194-2.667 2.667v18.667c0 1.473 1.194 2.667 2.667 2.667h18.667c1.473 0 2.667-1.194 2.667-2.667v-18.667c0-1.473-1.194-2.667-2.667-2.667z"></path>

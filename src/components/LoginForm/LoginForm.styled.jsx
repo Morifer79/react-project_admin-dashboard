@@ -100,9 +100,7 @@ export const StyledInput = styled.input`
 
   font-size: 12px;
   font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0px;
-  text-align: left;
+  line-height: 1.5;
 
   &::placeholder {
     color: #1d1e2166;

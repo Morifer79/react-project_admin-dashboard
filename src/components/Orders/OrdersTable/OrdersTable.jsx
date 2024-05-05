@@ -9,7 +9,7 @@ export const OrdersTable = () => {
     <Table>
       <thead>
         <tr>
-          <HeaderTitle colSpan="6">Recent Customers</HeaderTitle>
+          <HeaderTitle colSpan="6">All Orders</HeaderTitle>
         </tr>
       </thead>
       <tbody>
