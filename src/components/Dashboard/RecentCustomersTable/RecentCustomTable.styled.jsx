@@ -3,13 +3,31 @@ import { theme } from '../../../stylesheet/theme';
 
 export const Wrapper = styled.div`
   margin-block: ${theme.spacing(10)} ${theme.spacing(40)};
+  max-inline-size: 335px;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing(34)};
+  @media (width > 767px) {
+    max-inline-size: 704px;
+  }
   @media (width > 1439px) {
+    align-items: start;
     margin-inline-start: ${theme.spacing(40)};
+    max-inline-size: 1280px;
     flex-direction: row;
     gap: ${theme.spacing(10)};
+  }
+`;
+
+export const TableBodyThumb = styled.div`
+  max-block-size: 412px;
+  overflow: auto;
+  @media (width > 767px) {
+    max-block-size: 448px;
+  }
+  @media (width > 1439px) {
+    max-inline-size: 630px;
   }
 `;
 
@@ -18,6 +36,7 @@ export const Table = styled.table`
   font-weight: 500;
   line-height: 1.166;
   white-space: nowrap;
+  inline-size: 100%;
 
   @media (width > 767px) {
     font-size: 16px;
@@ -25,11 +44,9 @@ export const Table = styled.table`
   }
   td {
     padding-inline: ${theme.spacing(5)};
-    border-block: 1px solid #1d1e2119;
   }
   &.first td {
     vertical-align: middle;
-    border-inline: 1px solid #1d1e2119;
   }
   tbody {
     background-color: ${theme.colors.light};
@@ -43,16 +60,6 @@ export const Table = styled.table`
       inline-size: 36px;
       block-size: 36px;
     }
-  }
-`;
-
-export const TableBodyThumb = styled.div`
-  max-inline-size: 335px;
-  max-block-size: 412px;
-  overflow: auto;
-  @media (width > 767px) {
-    max-inline-size: 704px;
-    max-block-size: 448px;
   }
 `;
 

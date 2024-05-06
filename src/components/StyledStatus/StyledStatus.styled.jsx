@@ -55,4 +55,18 @@ export const Status = styled.div`
       color: #ffff00;
       background: #e8d27017;
     `};
+  ${({ $variant }) =>
+    $variant === 'Active' &&
+    css`
+      inline-size: 89px;
+      color: ${theme.colors.primary};
+      background: #59b17a19;
+    `};
+  ${({ $variant }) =>
+    $variant === 'Deactive' &&
+    css`
+      inline-size: 89px;
+      color: ${theme.colors.accent};
+      background: #e8505019;
+    `};
 `;

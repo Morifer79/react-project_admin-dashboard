@@ -95,7 +95,11 @@ export const EditData = () => {
 
         <BtnWrapper>
           <StyledButton prop="Save" $variant="save" />
-          <StyledButton prop="Cancel" $variant="cancel" />
+          <StyledButton
+            prop="Cancel"
+            $variant="cancel"
+            onClick={() => reset()}
+          />
         </BtnWrapper>
       </StyledForm>
     </ModalBody>

@@ -1,3 +1,5 @@
+import { Customers } from "../components/Customers/Customers";
+
 export default function CustomersPage() {
-  return <div>Customers Page</div>
+  return <Customers />
 }

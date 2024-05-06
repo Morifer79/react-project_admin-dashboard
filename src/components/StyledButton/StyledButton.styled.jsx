@@ -79,6 +79,7 @@ export const Button = styled.button`
     $variant === 'add-sup' &&
     css`
       @media screen and (max-width: 767px) {
+        margin-block-start: ${theme.spacing(8)};
         font-size: 12px;
         line-height: 1.5;
       }
@@ -88,7 +89,7 @@ export const Button = styled.button`
       color: ${theme.colors.main};
       &:is(:hover, :focus) {
         border: 1px solid ${theme.colors.primaryhover};
-        color: ${theme.colors.primary};
+        color: ${theme.colors.light};
       }
     `};
 `;

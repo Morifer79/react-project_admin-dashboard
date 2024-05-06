@@ -1,19 +1,23 @@
-import { FirstRow, HeaderSubTitle, HeaderTitle } from '../../Dashboard/RecentCustomersTable/RecentCustomTable.styled';
+import {
+  FirstRow,
+  HeaderSubTitle,
+  HeaderTitle,
+} from '../../Dashboard/RecentCustomersTable/RecentCustomTable.styled';
 import { Table, TableThumb } from './OrdersTable.styled';
-import noImg from '../../../assets/noImg.png'
-import data from './orders.json';
+import noImg from '../../../assets/noImg.png';
+import orders from './orders.json';
 import { StyledStatus } from '../../StyledStatus/StyledStatus';
 
 export const OrdersTable = () => {
   return (
-    <Table>
-      <thead>
-        <tr>
-          <HeaderTitle colSpan="6">All Orders</HeaderTitle>
-        </tr>
-      </thead>
-      <tbody>
-        <TableThumb>
+    <TableThumb>
+      <Table>
+        <thead>
+          <tr>
+            <HeaderTitle colSpan="6">All orders</HeaderTitle>
+          </tr>
+        </thead>
+        <tbody>
           <tr>
             <HeaderSubTitle>User Info</HeaderSubTitle>
             <HeaderSubTitle>Address</HeaderSubTitle>
@@ -22,7 +26,7 @@ export const OrdersTable = () => {
             <HeaderSubTitle>Status</HeaderSubTitle>
             <HeaderSubTitle>Order date</HeaderSubTitle>
           </tr>
-          {data.map((item, index) => (
+          {orders.map((item, index) => (
             <tr key={index}>
               <FirstRow>
                 <img src={item.photo ? item.photo : noImg} alt="user" />
@@ -37,8 +41,8 @@ export const OrdersTable = () => {
               <td>{item.order_date}</td>
             </tr>
           ))}
-        </TableThumb>
-      </tbody>
-    </Table>
+        </tbody>
+      </Table>
+    </TableThumb>
   );
 };

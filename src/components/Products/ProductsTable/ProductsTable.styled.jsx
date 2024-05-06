@@ -5,9 +5,10 @@ export const BtnChange = styled.button`
   inline-size: 32px;
   block-size: 32px;
   border-radius: ${theme.radii.xl};
+  transition: background-color ${theme.transition};
 
   &:is(:hover, :focus) {
-    background-color: #e4e72ee2;
+    background-color: #e9eb9fe1;
   }
 
   svg {

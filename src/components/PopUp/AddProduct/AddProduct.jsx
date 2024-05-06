@@ -57,7 +57,9 @@ export const AddProduct = () => {
             {...register('category')}
             style={{ borderColor: errors.category && '#E85050' }}
           >
-            <option value="category" selected hidden>Category</option>
+            <option value="category" selected hidden>
+              Category
+            </option>
             <option value="medicine">Medicine</option>
             <option value="heart">Heart</option>
             <option value="head">Head</option>
@@ -98,7 +100,11 @@ export const AddProduct = () => {
 
         <BtnWrapper>
           <StyledButton prop="Add" $variant="add" />
-          <StyledButton prop="Cancel" $variant="cancel" />
+          <StyledButton
+            prop="Cancel"
+            $variant="cancel"
+            onClick={() => reset()}
+          />
         </BtnWrapper>
       </StyledForm>
     </ModalBody>

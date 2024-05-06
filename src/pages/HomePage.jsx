@@ -1,9 +1,5 @@
-import { Products } from "../components/Products/Products";
+import { Welcome } from '../components/Welcome/Welcome';
 
 export default function HomePage() {
-  return (
-    <>
-      <Products/>
-    </>
-  );
+  return <Welcome />
 }

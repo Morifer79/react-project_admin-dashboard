@@ -50,32 +50,29 @@ export const SidebarNav = styled.nav`
     flex-direction: column;
     gap: ${theme.spacing(7)};
   }
-
-  ul li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    inline-size: 38px;
-    block-size: 38px;
-
-    cursor: pointer;
-    background-color: ${theme.colors.light};
-    border-radius: ${theme.radii.xl};
-    box-shadow: 0px -1px 7px 0px rgba(71, 71, 71, 0.05);
-
-    &:is(:hover, :focus, .active) svg {
-      fill: ${theme.colors.primary};
-    }
-
-    @media (width > 767px) {
-      inline-size: 44px;
-      block-size: 44px;
-    }
-  }
 `;
 
 export const StyledLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  inline-size: 38px;
+  block-size: 38px;
+
+  cursor: pointer;
+  background-color: ${theme.colors.light};
+  border-radius: ${theme.radii.xl};
+  box-shadow: 0px -1px 7px 0px rgba(71, 71, 71, 0.05);
+
+  @media (width > 767px) {
+    inline-size: 44px;
+    block-size: 44px;
+  }
+
+  &:is(:hover, :focus, .active) svg {
+    fill: ${theme.colors.primary};
+  }
   svg {
     inline-size: 12px;
     block-size: 12px;

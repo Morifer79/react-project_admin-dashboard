@@ -4,13 +4,13 @@ import {
   HeaderTitle,
 } from '../../Dashboard/RecentCustomersTable/RecentCustomTable.styled';
 import { Table, TableThumb } from '../../Orders/OrdersTable/OrdersTable.styled';
-import sprite from '../../../assets/sprite.svg';
-import noImg from '../../../assets/noImg.png';
-import data from './products.json';
 import { BtnChange, BtnWrapper } from './ProductsTable.styled';
 import { PopUp } from '../../PopUp/PopUp';
 import { EditData } from '../../PopUp/EditData/EditData';
 import { useState } from 'react';
+import sprite from '../../../assets/sprite.svg';
+import noImg from '../../../assets/noImg.png';
+import products from './products.json';
 
 export const ProductsTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,14 +27,14 @@ export const ProductsTable = () => {
 
   return (
     <>
-      <Table>
-        <thead>
-          <tr>
-            <HeaderTitle colSpan="6">All products</HeaderTitle>
-          </tr>
-        </thead>
-        <tbody>
-          <TableThumb>
+      <TableThumb>
+        <Table>
+          <thead>
+            <tr>
+              <HeaderTitle colSpan="6">All products</HeaderTitle>
+            </tr>
+          </thead>
+          <tbody>
             <tr>
               <HeaderSubTitle>Product Info</HeaderSubTitle>
               <HeaderSubTitle>Category</HeaderSubTitle>
@@ -43,7 +43,7 @@ export const ProductsTable = () => {
               <HeaderSubTitle>Price</HeaderSubTitle>
               <HeaderSubTitle>Actions</HeaderSubTitle>
             </tr>
-            {data.map(item => (
+            {products.map(item => (
               <tr key={item.id}>
                 <FirstRow>
                   <img src={item.photo ? item.photo : noImg} alt="user" />
@@ -69,9 +69,9 @@ export const ProductsTable = () => {
                 </td>
               </tr>
             ))}
-          </TableThumb>
-        </tbody>
-      </Table>
+          </tbody>
+        </Table>
+      </TableThumb>
       <PopUp isOpen={isModalOpen} onRequestClose={closeModal}>
         <EditData onRequestClose={closeModal} />
       </PopUp>
