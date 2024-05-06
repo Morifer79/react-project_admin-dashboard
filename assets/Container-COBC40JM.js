@@ -1,4 +1,4 @@
-import{u as e,t as i,P as p,j as s}from"./index-CXzQq0is.js";const a=e.div`
+import{u as e,t as i,P as p,j as s}from"./index-earmbMvx.js";const a=e.div`
   inline-size: 375px;
   padding-inline: ${i.spacing(10)};
 
