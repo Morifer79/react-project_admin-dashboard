@@ -10,10 +10,35 @@ import {
 } from './Header.styled';
 import logo from '../../assets/logo.png';
 import sprite from '../../assets/sprite.svg';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { logOut } from '../../redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import { useAuth } from '../../hooks/useAuth';
+import { Popover } from 'antd';
+
+const pageTitleMap = {
+  '/dashboard': 'Dasboard',
+  '/orders': 'All orders',
+  '/products': 'All products',
+  '/suppliers': 'All suppliers',
+  '/customers': 'All customers',
+};
+
+const getLocationPageTitle = location => {
+  const { pathname } = location;
+  return pageTitleMap[pathname] || 'Unknown page';
+};
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { user } = useAuth();
+  const nav = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    nav('/login');
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(prevMenuOpen => !prevMenuOpen);
@@ -27,16 +52,8 @@ export const Header = () => {
     document.body.style.overflowY = 'auto';
   };
 
-  const pageTitleMap = {
-    '/dashboard': 'Dasboard',
-    '/orders': 'All orders',
-    '/products': 'All products',
-    '/suppliers': 'All suppliers',
-    '/customers': 'All customers',
-  };
-
   const location = useLocation();
-  const user = pageTitleMap[location.pathname] || 'Home page';
+  const pageTitle = getLocationPageTitle(location);
 
   return (
     <HeaderWrapper>
@@ -62,13 +79,17 @@ export const Header = () => {
       </NavLink>
       <div>
         <Title>Medicine store</Title>
-        <SubTitle>{user} | vendor@gmail.com</SubTitle>
+        <SubTitle>
+          {pageTitle} | {user.email}
+        </SubTitle>
       </div>
-      <BtnLogout>
-        <svg>
-          <use href={`${sprite}#icon-logout`} />
-        </svg>
-      </BtnLogout>
+      <Popover content="Leaving already?" trigger="hover">
+        <BtnLogout type="button" onClick={handleLogout}>
+          <svg>
+            <use href={`${sprite}#icon-logout`} />
+          </svg>
+        </BtnLogout>
+      </Popover>
     </HeaderWrapper>
   );
 };

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../stylesheet/theme';
 import traces from '../../assets/traces.png';
+import { NavLink } from 'react-router-dom';
 
 export const FlexBox = styled.div`
   @media (width > 1439px) {
@@ -134,5 +135,18 @@ export const BgImg = styled.div`
     top: 540px;
     left: 1120px;
     bottom: 0;
+  }
+`;
+
+export const StyledLink = styled(NavLink)`
+  margin-block-start: ${theme.spacing(10)};
+  font-size: 12px;
+  align-self: center;
+  text-decoration: underline;
+  transition: text-decoration ${theme.transition}, color ${theme.transition};
+
+  &:is(:hover, :focus) {
+    text-decoration: none;
+    color: ${theme.colors.primary};
   }
 `;

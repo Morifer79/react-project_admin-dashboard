@@ -7,7 +7,7 @@ import {
   StyledForm,
   StyledInput,
   Title,
-} from './LoginForm.styled';
+} from './Auth.styled';
 import { Container } from '../Constructor/Container/Container';
 import { useForm } from 'react-hook-form';
 import { StyledButton } from '../StyledButton/StyledButton';
@@ -17,8 +17,12 @@ import * as yup from 'yup';
 import logo from '../../assets/logo_log.png';
 import pill from '../../assets/pill.png';
 import sprite from '../../assets/sprite.svg';
+import { useDispatch } from 'react-redux';
+import {signUp} from '../../redux/auth/authOperations.js'
+import toast from 'react-hot-toast';
 
-const loginSchema = yup.object({
+
+const registerSchema = yup.object({
   email: yup
     .string()
     .email('Invalid email address')
@@ -33,8 +37,9 @@ const loginSchema = yup.object({
     .required('Password is required field'),
 });
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const {
     reset,
@@ -42,12 +47,18 @@ export const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(registerSchema),
     mode: 'onBlur',
   });
-  const onSubmit = data => {
-    console.log(data);
-    reset();
+
+  const onSubmit = async data => {
+    try {
+      await dispatch(signUp(data)).unwrap();
+      toast.success('Congrats!');
+      reset();
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleTogglePassword = () => {
@@ -97,7 +108,7 @@ export const LoginForm = () => {
               </svg>
             </EyeBtn>
           </InputWrapper>
-          <StyledButton prop="Log in" $variant="login" />
+          <StyledButton prop="Register" $variant="login" />
         </StyledForm>
       </FlexBox>
       <BgImg />

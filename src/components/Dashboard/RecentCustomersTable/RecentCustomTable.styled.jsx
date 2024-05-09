@@ -43,10 +43,11 @@ export const Table = styled.table`
     line-height: 1.125;
   }
   td {
-    padding-inline: ${theme.spacing(5)};
+    padding-inline: ${theme.spacing(10)};
   }
   &.first td {
     vertical-align: middle;
+    padding-inline: ${theme.spacing(10)};
   }
   tbody {
     background-color: ${theme.colors.light};
@@ -83,9 +84,9 @@ export const HeaderSubTitle = styled.td`
 `;
 
 export const FirstRow = styled.td`
-  padding-inline-start: ${theme.spacing(7)};
+  padding-inline: ${theme.spacing(7)} ${theme.spacing(5)};
   @media (width > 767px) {
-    padding-inline-start: ${theme.spacing(10)};
+    padding-inline: ${theme.spacing(10)} ${theme.spacing(5)};
     padding-block: ${theme.spacing(5)};
     display: flex;
     align-items: center;

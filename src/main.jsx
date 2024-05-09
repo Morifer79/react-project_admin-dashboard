@@ -6,20 +6,22 @@ import { BrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './stylesheet/theme';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-const queryClient = new QueryClient();
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import { persistor, store } from './redux/store.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <BrowserRouter basename="/react-project_admin-dashboard">
-          <App />
-          <GlobalStyle />
-          <Toaster />
-        </BrowserRouter>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter basename="/react-project_admin-dashboard">
+            <App />
+            <GlobalStyle />
+            <Toaster />
+          </BrowserRouter>
+        </PersistGate>
       </ThemeProvider>
-    </QueryClientProvider>
+    </Provider>
   </React.StrictMode>
 );

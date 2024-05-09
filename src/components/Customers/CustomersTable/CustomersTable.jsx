@@ -1,9 +1,21 @@
-import { FirstRow, HeaderSubTitle, HeaderTitle } from '../../Dashboard/RecentCustomersTable/RecentCustomTable.styled';
+import {
+  FirstRow,
+  HeaderSubTitle,
+  HeaderTitle,
+} from '../../Dashboard/RecentCustomersTable/RecentCustomTable.styled';
 import { Table, TableThumb } from '../../Orders/OrdersTable/OrdersTable.styled';
 import noImg from '../../../assets/noImg.png';
-import customers from './customers.json';
+import { getCustomers } from '../../../redux/pharmacy/pharmacyOperations';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCustomers } from '../../../redux/pharmacy/pharmacySelectors';
 
 export const CustomersTable = () => {
+  const dispatch = useDispatch();
+  const customers = useSelector(selectCustomers);
+  useEffect(() => {
+    dispatch(getCustomers());
+  }, [dispatch]);
   return (
     <TableThumb>
       <Table>
@@ -20,8 +32,8 @@ export const CustomersTable = () => {
             <HeaderSubTitle>Phone</HeaderSubTitle>
             <HeaderSubTitle>Register date</HeaderSubTitle>
           </tr>
-          {customers.map((item, index) => (
-            <tr key={index}>
+          {customers.map(item => (
+            <tr key={item._id}>
               <FirstRow>
                 <img src={item.image ? item.image : noImg} alt="user" />
                 <span>{item.name}</span>

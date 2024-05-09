@@ -13,6 +13,7 @@ export const SharedLayout = () => {
   const location = useLocation();
   const userLocation =
     location.pathname === '/login' ||
+    location.pathname === '/register' ||
     location.pathname === '/*';
 
   return (

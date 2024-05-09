@@ -5,10 +5,10 @@ export const TableThumb = styled.div`
   margin-block: ${theme.spacing(10)} ${theme.spacing(70)};
   max-inline-size: 335px;
   max-block-size: 412px;
-  overflow: auto;
+  overflow-y: hidden;
 
   @media (width > 767px) {
-    margin-block-end: ${theme.spacing(143)};
+    margin-block-end: ${theme.spacing(5)};
     max-inline-size: 704px;
     max-block-size: 500px;
   }
@@ -51,5 +51,17 @@ export const Table = styled.table`
       inline-size: 36px;
       block-size: 36px;
     }
+  }
+`;
+
+export const BtnWrapper = styled.div`
+  padding-block: ${theme.spacing(10)};
+  display: flex;
+  justify-content: space-between;
+  span {
+    color: ${theme.colors.primary};
+  }
+  @media (width > 1439px) {
+    margin-inline-start: ${theme.spacing(40)};
   }
 `;

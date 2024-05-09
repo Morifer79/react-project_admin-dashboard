@@ -9,10 +9,19 @@ import {
   Wrapper,
 } from './RecentCustomTable.styled';
 import noImg from '../../../assets/noImg.png';
-import customers from './customers.json';
-import income from './income_expenses.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectDashboard } from '../../../redux/pharmacy/pharmacySelectors';
+import { useEffect } from 'react';
+import { getDashboard } from '../../../redux/pharmacy/pharmacyOperations';
 
 export const RecentCustomersTable = () => {
+  const dispatch = useDispatch();
+  const { recentCustomers, incomeExpenses } = useSelector(selectDashboard);
+
+  useEffect(() => {
+    dispatch(getDashboard());
+  }, [dispatch]);
+
   return (
     <Wrapper>
       <TableBodyThumb>
@@ -31,8 +40,8 @@ export const RecentCustomersTable = () => {
               <HeaderSubTitle>Address</HeaderSubTitle>
               <HeaderSubTitle>Register Date</HeaderSubTitle>
             </tr>
-            {customers.map((item, index) => (
-              <tr key={index}>
+            {recentCustomers?.map(item => (
+              <tr key={item._id}>
                 <FirstRow>
                   <img src={item.photo ? item.photo : noImg} alt="user" />
                   <span>{item.name}</span>
@@ -59,8 +68,8 @@ export const RecentCustomersTable = () => {
             <tr>
               <HeaderSubTitle colSpan="3">Today</HeaderSubTitle>
             </tr>
-            {income.map((item, index) => (
-              <tr key={index}>
+            {incomeExpenses?.map(item => (
+              <tr key={item._id}>
                 <FirstRow>
                   <StyledLabel prop={item.type} $variant={item.type} />
                 </FirstRow>

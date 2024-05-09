@@ -7,13 +7,19 @@ import { Table, TableThumb } from '../../Orders/OrdersTable/OrdersTable.styled';
 import { BtnChange, BtnWrapper } from './ProductsTable.styled';
 import { PopUp } from '../../PopUp/PopUp';
 import { EditData } from '../../PopUp/EditData/EditData';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import sprite from '../../../assets/sprite.svg';
 import noImg from '../../../assets/noImg.png';
-import products from './products.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../../../redux/pharmacy/pharmacyOperations';
+import { selectProducts } from '../../../redux/pharmacy/pharmacySelectors';
+import { Popover } from 'antd';
 
 export const ProductsTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const products = useSelector(selectProducts);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -24,6 +30,10 @@ export const ProductsTable = () => {
     setIsModalOpen(false);
     document.body.style.overflow = '';
   };
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
 
   return (
     <>
@@ -43,10 +53,10 @@ export const ProductsTable = () => {
               <HeaderSubTitle>Price</HeaderSubTitle>
               <HeaderSubTitle>Actions</HeaderSubTitle>
             </tr>
-            {products.map(item => (
-              <tr key={item.id}>
+            {products?.map(item => (
+              <tr key={item._id}>
                 <FirstRow>
-                  <img src={item.photo ? item.photo : noImg} alt="user" />
+                  <img src={item.image ? item.image : noImg} alt="user" />
                   <span>{item.name}</span>
                 </FirstRow>
                 <td>{item.category}</td>
@@ -55,16 +65,27 @@ export const ProductsTable = () => {
                 <td>{item.price}</td>
                 <td>
                   <BtnWrapper>
-                    <BtnChange onClick={openModal}>
-                      <svg>
-                        <use href={`${sprite}#icon-edit`} />
-                      </svg>
-                    </BtnChange>
-                    <BtnChange>
-                      <svg>
-                        <use href={`${sprite}#icon-trash`} />
-                      </svg>
-                    </BtnChange>
+                    <Popover
+                      content="Click to edit"
+                      trigger="hover"
+                    >
+                      <BtnChange onClick={openModal}>
+                        <svg>
+                          <use href={`${sprite}#icon-edit`} />
+                        </svg>
+                      </BtnChange>
+                    </Popover>
+                    <Popover
+                      content="You`re about to delete an item!"
+                      title="Caution!"
+                      trigger="hover"
+                    >
+                      <BtnChange>
+                        <svg>
+                          <use href={`${sprite}#icon-trash`} />
+                        </svg>
+                      </BtnChange>
+                    </Popover>
                   </BtnWrapper>
                 </td>
               </tr>

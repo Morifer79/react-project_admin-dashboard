@@ -6,14 +6,18 @@ import {
 import { Table, TableThumb } from '../../Orders/OrdersTable/OrdersTable.styled';
 import { PopUp } from '../../PopUp/PopUp';
 import { EditSuppliers } from '../../PopUp/EditSuppliers/EditSuppliers';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyledStatus } from '../../StyledStatus/StyledStatus';
 import { BtnOvalChange } from './SuppliersTable.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSuppliers } from '../../../redux/pharmacy/pharmacySelectors';
+import { getSuppliers } from '../../../redux/pharmacy/pharmacyOperations';
 import sprite from '../../../assets/sprite.svg';
-import suppliers from './suppliers.json';
 
 export const SuppliersTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const suppliers = useSelector(selectSuppliers);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -24,6 +28,10 @@ export const SuppliersTable = () => {
     setIsModalOpen(false);
     document.body.style.overflow = '';
   };
+
+  useEffect(() => {
+    dispatch(getSuppliers());
+  }, [dispatch]);
 
   return (
     <>
@@ -44,8 +52,8 @@ export const SuppliersTable = () => {
               <HeaderSubTitle>Status</HeaderSubTitle>
               <HeaderSubTitle>Action</HeaderSubTitle>
             </tr>
-            {suppliers.map((item, index) => (
-              <tr key={index}>
+            {suppliers.map(item => (
+              <tr key={item._id}>
                 <FirstRow>
                   <span>{item.name}</span>
                 </FirstRow>
