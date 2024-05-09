@@ -1,4 +1,4 @@
-import{u as e,t as i}from"./index-earmbMvx.js";const a=e.form`
+import{b as e,t as i}from"./index-C1SJzE97.js";const a=e.form`
   margin-block-start: ${i.spacing(20)};
   display: flex;
   gap: ${i.spacing(4)};
@@ -29,14 +29,14 @@ import{u as e,t as i}from"./index-earmbMvx.js";const a=e.form`
     font-weight: 400;
     line-height: 1.5;
   }
-`,l=e.div`
+`,s=e.div`
   margin-block: ${i.spacing(10)} ${i.spacing(70)};
   max-inline-size: 335px;
   max-block-size: 412px;
-  overflow: auto;
+  overflow-y: hidden;
 
   @media (width > 767px) {
-    margin-block-end: ${i.spacing(143)};
+    margin-block-end: ${i.spacing(5)};
     max-inline-size: 704px;
     max-block-size: 500px;
   }
@@ -45,7 +45,7 @@ import{u as e,t as i}from"./index-earmbMvx.js";const a=e.form`
     margin-inline-start: ${i.spacing(40)};
     max-inline-size: 100%;
   }
-`,o=e.table`
+`,l=e.table`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.166;
@@ -78,4 +78,14 @@ import{u as e,t as i}from"./index-earmbMvx.js";const a=e.form`
       block-size: 36px;
     }
   }
-`;export{a as S,l as T,o as a,t as b};
+`,p=e.div`
+  padding-block: ${i.spacing(10)};
+  display: flex;
+  justify-content: space-between;
+  span {
+    color: ${i.colors.primary};
+  }
+  @media (width > 1439px) {
+    margin-inline-start: ${i.spacing(40)};
+  }
+`;export{p as B,a as S,s as T,l as a,t as b};

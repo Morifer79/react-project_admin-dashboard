@@ -1,4 +1,4 @@
-import{u as a,t as i}from"./index-earmbMvx.js";const n=a.div`
+import{b as e,t as i}from"./index-C1SJzE97.js";const n=a=>a.pharmacy.dashboard,d=a=>a.pharmacy.orders,p=a=>a.pharmacy.suppliers,t=a=>a.pharmacy.products,c=a=>a.pharmacy.customers,o=e.div`
   margin-block: ${i.spacing(10)} ${i.spacing(40)};
   max-inline-size: 335px;
   overflow: auto;
@@ -15,7 +15,7 @@ import{u as a,t as i}from"./index-earmbMvx.js";const n=a.div`
     flex-direction: row;
     gap: ${i.spacing(10)};
   }
-`,d=a.div`
+`,l=e.div`
   max-block-size: 412px;
   overflow: auto;
   @media (width > 767px) {
@@ -24,7 +24,7 @@ import{u as a,t as i}from"./index-earmbMvx.js";const n=a.div`
   @media (width > 1439px) {
     max-inline-size: 630px;
   }
-`,s=a.table`
+`,r=e.table`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.166;
@@ -36,10 +36,11 @@ import{u as a,t as i}from"./index-earmbMvx.js";const n=a.div`
     line-height: 1.125;
   }
   td {
-    padding-inline: ${i.spacing(5)};
+    padding-inline: ${i.spacing(10)};
   }
   &.first td {
     vertical-align: middle;
+    padding-inline: ${i.spacing(10)};
   }
   tbody {
     background-color: ${i.colors.light};
@@ -54,7 +55,7 @@ import{u as a,t as i}from"./index-earmbMvx.js";const n=a.div`
       block-size: 36px;
     }
   }
-`,t=a.th`
+`,g=e.th`
   padding: ${i.spacing(7)};
   border-radius: ${i.radii.s} ${i.radii.s} 0 0;
   background-color: ${i.colors.tablehead};
@@ -63,25 +64,25 @@ import{u as a,t as i}from"./index-earmbMvx.js";const n=a.div`
   @media (width > 767px) {
     padding: ${i.spacing(10)};
   }
-`,p=a.td`
+`,x=e.td`
   color: #1d1e2166;
   padding: ${i.spacing(5)} ${i.spacing(7)};
   @media (width > 767px) {
     padding: ${i.spacing(10)} ${i.spacing(14.5)};
   }
-`,l=a.td`
-  padding-inline-start: ${i.spacing(7)};
+`,m=e.td`
+  padding-inline: ${i.spacing(7)} ${i.spacing(5)};
   @media (width > 767px) {
-    padding-inline-start: ${i.spacing(10)};
+    padding-inline: ${i.spacing(10)} ${i.spacing(5)};
     padding-block: ${i.spacing(5)};
     display: flex;
     align-items: center;
     gap: ${i.spacing(4)};
   }
-`,o=a.td`
+`,h=e.td`
   @media (width < 768px) {
     max-inline-size: 118px;
   }
   padding: ${i.spacing(5)};
   white-space: normal;
-`;export{l as F,t as H,o as S,d as T,n as W,s as a,p as b};
+`;export{m as F,g as H,h as S,l as T,o as W,r as a,x as b,d as c,t as d,c as e,p as f,n as s};
