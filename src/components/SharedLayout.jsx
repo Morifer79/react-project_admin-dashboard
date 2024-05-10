@@ -10,14 +10,16 @@ const GlobalContainer = styled.div`
 
 export const SharedLayout = () => {
   const location = useLocation();
-  const userLocation =
-    location.pathname === '/login' ||
-    location.pathname === '/register' ||
-    location.pathname === '/*';
+  const visibleHeader =
+    location.pathname === '/dashboard' ||
+    location.pathname === '/orders' ||
+    location.pathname === '/products' ||
+    location.pathname === '/customers' ||
+    location.pathname === '/suppliers';
 
   return (
     <GlobalContainer>
-      {!userLocation && <Header />}
+      {visibleHeader && <Header />}
       <main>
         <Suspense fallback={<Loader />}>
           <Outlet />
