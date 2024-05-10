@@ -1,4 +1,4 @@
-import{b as e,t as i}from"./index-C1SJzE97.js";const a=e.form`
+import{b as e,t as i}from"./index-DS3f5kjc.js";const a=e.form`
   margin-block-start: ${i.spacing(20)};
   display: flex;
   gap: ${i.spacing(4)};
@@ -16,9 +16,8 @@ import{b as e,t as i}from"./index-C1SJzE97.js";const a=e.form`
 
   font-size: 12px;
   font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0px;
-  text-align: left;
+  line-height: 1.5;
+
   @media (width > 767px) {
     max-inline-size: 224px;
   }
@@ -30,15 +29,12 @@ import{b as e,t as i}from"./index-C1SJzE97.js";const a=e.form`
     line-height: 1.5;
   }
 `,s=e.div`
-  margin-block: ${i.spacing(10)} ${i.spacing(70)};
+  margin-block: ${i.spacing(10)} ${i.spacing(5)};
   max-inline-size: 335px;
-  max-block-size: 412px;
   overflow-y: hidden;
 
   @media (width > 767px) {
-    margin-block-end: ${i.spacing(5)};
     max-inline-size: 704px;
-    max-block-size: 500px;
   }
 
   @media (width > 1439px) {
@@ -78,7 +74,7 @@ import{b as e,t as i}from"./index-C1SJzE97.js";const a=e.form`
       block-size: 36px;
     }
   }
-`,p=e.div`
+`,o=e.div`
   padding-block: ${i.spacing(10)};
   display: flex;
   justify-content: space-between;
@@ -88,4 +84,4 @@ import{b as e,t as i}from"./index-C1SJzE97.js";const a=e.form`
   @media (width > 1439px) {
     margin-inline-start: ${i.spacing(40)};
   }
-`;export{p as B,a as S,s as T,l as a,t as b};
+`;export{o as B,a as S,s as T,l as a,t as b};

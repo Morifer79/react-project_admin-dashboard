@@ -1,4 +1,4 @@
-import{b as e,t as i}from"./index-C1SJzE97.js";const n=a=>a.pharmacy.dashboard,d=a=>a.pharmacy.orders,p=a=>a.pharmacy.suppliers,t=a=>a.pharmacy.products,c=a=>a.pharmacy.customers,o=e.div`
+import{b as e,t as i}from"./index-DS3f5kjc.js";const n=a=>a.pharmacy.dashboard,d=a=>a.pharmacy.orders,p=a=>a.pharmacy.suppliers,t=a=>a.pharmacy.products,c=a=>a.pharmacy.customers,o=e.div`
   margin-block: ${i.spacing(10)} ${i.spacing(40)};
   max-inline-size: 335px;
   overflow: auto;
