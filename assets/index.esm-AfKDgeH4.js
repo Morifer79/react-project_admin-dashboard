@@ -1,4 +1,4 @@
-import{b as F,t as h,aK as Te,as as De}from"./index-kUjzZVVH.js";import{g as X,s as B,a as Ae}from"./StyledButton-yEkh6wW-.js";const Ce="/react-project_admin-dashboard/assets/traces-wu58IiZi.png",Nt=F.div`
+import{b as F,t as h,aK as Te,as as De}from"./index-Bk1o5P8s.js";import{g as X,s as B,a as Ae}from"./StyledButton-Cg1TF5z8.js";const Ce="/react-project_admin-dashboard/assets/traces-wu58IiZi.png",Nt=F.div`
   @media (width > 1439px) {
     display: flex;
     gap: ${h.spacing(75)};
