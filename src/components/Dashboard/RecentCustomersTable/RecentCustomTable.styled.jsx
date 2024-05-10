@@ -21,6 +21,7 @@ export const Wrapper = styled.div`
 `;
 
 export const TableBodyThumb = styled.div`
+  border-radius: ${theme.radii.s};
   overflow: auto;
   @media (width > 767px) {
     max-block-size: 435px;
