@@ -1,4 +1,4 @@
-import{b as i,d as e,t as r,P as c,j as s}from"./index-LKkeZSUJ.js";const a=i.div`
+import{b as i,d as e,t as r,P as c,j as s}from"./index-aiNyUlUS.js";const a=i.div`
   inline-size: 92px;
   block-size: 25px;
 
@@ -38,14 +38,14 @@ import{b as i,d as e,t as r,P as c,j as s}from"./index-LKkeZSUJ.js";const a=i.di
       color: #ffff00;
       background: #e8d27017;
     `};
-  ${({$variant:o})=>o==="Active"&&e`
-      inline-size: 89px;
-      color: ${r.colors.primary};
-      background: #59b17a19;
-    `};
-  ${({$variant:o})=>o==="Deactive"&&e`
-      inline-size: 89px;
-      color: ${r.colors.accent};
-      background: #e8505019;
-    `};
+  ${({$variant:o})=>o==="active"||o==="Active"&&e`
+        inline-size: 89px;
+        color: ${r.colors.primary};
+        background: #59b17a19;
+      `};
+  ${({$variant:o})=>o==="deactive"||o==="Deactive"&&e`
+        inline-size: 89px;
+        color: ${r.colors.accent};
+        background: #e8505019;
+      `};
 `,t=({$variant:o,prop:n})=>s.jsx(a,{$variant:o,children:n});t.propTypes={prop:c.any,$variant:c.string};export{t as S};

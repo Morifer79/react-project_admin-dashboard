@@ -1,4 +1,4 @@
-import{b as e,t as i}from"./index-LKkeZSUJ.js";const a=e.form`
+import{b as e,t as i}from"./index-aiNyUlUS.js";const a=e.form`
   margin-block-start: ${i.spacing(20)};
   display: flex;
   gap: ${i.spacing(4)};
@@ -28,7 +28,7 @@ import{b as e,t as i}from"./index-LKkeZSUJ.js";const a=e.form`
     font-weight: 400;
     line-height: 1.5;
   }
-`,l=e.div`
+`,s=e.div`
   margin-block: ${i.spacing(10)} ${i.spacing(5)};
   max-inline-size: 335px;
   overflow-y: hidden;
@@ -41,7 +41,7 @@ import{b as e,t as i}from"./index-LKkeZSUJ.js";const a=e.form`
     margin-inline-start: ${i.spacing(40)};
     max-inline-size: 100%;
   }
-`,s=e.table`
+`,o=e.table`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.166;
@@ -74,14 +74,22 @@ import{b as e,t as i}from"./index-LKkeZSUJ.js";const a=e.form`
       block-size: 36px;
     }
   }
-`,o=e.div`
+`,l=e.div`
   padding-block: ${i.spacing(10)};
   display: flex;
   justify-content: space-between;
+
+  button {
+    transition: 1s;
+    &:is(:hover, :focus) {
+      scale: 1.1;
+    }
+  }
+
   span {
     color: ${i.colors.primary};
   }
   @media (width > 1439px) {
     margin-inline-start: ${i.spacing(40)};
   }
-`;export{o as B,a as S,l as T,s as a,t as b};
+`;export{l as B,a as S,s as T,o as a,t as b};
