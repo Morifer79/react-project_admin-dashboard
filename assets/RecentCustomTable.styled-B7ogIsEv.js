@@ -1,4 +1,4 @@
-import{b as e,t as i}from"./index-DS3f5kjc.js";const n=a=>a.pharmacy.dashboard,d=a=>a.pharmacy.orders,p=a=>a.pharmacy.suppliers,t=a=>a.pharmacy.products,c=a=>a.pharmacy.customers,o=e.div`
+import{b as e,t as i}from"./index-LKkeZSUJ.js";const n=a=>a.pharmacy.dashboard,d=a=>a.pharmacy.orders,p=a=>a.pharmacy.suppliers,t=a=>a.pharmacy.products,c=a=>a.pharmacy.customers,o=e.div`
   margin-block: ${i.spacing(10)} ${i.spacing(40)};
   max-inline-size: 335px;
   overflow: auto;
@@ -16,10 +16,9 @@ import{b as e,t as i}from"./index-DS3f5kjc.js";const n=a=>a.pharmacy.dashboard,d
     gap: ${i.spacing(10)};
   }
 `,l=e.div`
-  max-block-size: 412px;
   overflow: auto;
   @media (width > 767px) {
-    max-block-size: 448px;
+    max-block-size: 435px;
   }
   @media (width > 1439px) {
     max-inline-size: 630px;
@@ -65,7 +64,7 @@ import{b as e,t as i}from"./index-DS3f5kjc.js";const n=a=>a.pharmacy.dashboard,d
     padding: ${i.spacing(10)};
   }
 `,x=e.td`
-  color: #1d1e2166;
+  color: ${i.colors.alfadarkblue};
   padding: ${i.spacing(5)} ${i.spacing(7)};
   @media (width > 767px) {
     padding: ${i.spacing(10)} ${i.spacing(14.5)};

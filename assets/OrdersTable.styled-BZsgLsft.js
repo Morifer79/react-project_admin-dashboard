@@ -1,4 +1,4 @@
-import{b as e,t as i}from"./index-DS3f5kjc.js";const a=e.form`
+import{b as e,t as i}from"./index-LKkeZSUJ.js";const a=e.form`
   margin-block-start: ${i.spacing(20)};
   display: flex;
   gap: ${i.spacing(4)};
@@ -9,7 +9,7 @@ import{b as e,t as i}from"./index-DS3f5kjc.js";const a=e.form`
   position: relative;
   padding: 13px 18px;
   inline-size: 100%;
-  border: 1px solid #1d1e2119;
+  border: 1px solid ${i.colors.alfablue};
   border-radius: ${i.radii.xxl};
   background: ${i.colors.light};
   outline: none;
@@ -23,12 +23,12 @@ import{b as e,t as i}from"./index-DS3f5kjc.js";const a=e.form`
   }
 
   &::placeholder {
-    color: #1d1e2166;
+    color: ${i.colors.alfadarkblue};
     font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
   }
-`,s=e.div`
+`,l=e.div`
   margin-block: ${i.spacing(10)} ${i.spacing(5)};
   max-inline-size: 335px;
   overflow-y: hidden;
@@ -41,7 +41,7 @@ import{b as e,t as i}from"./index-DS3f5kjc.js";const a=e.form`
     margin-inline-start: ${i.spacing(40)};
     max-inline-size: 100%;
   }
-`,l=e.table`
+`,s=e.table`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.166;
@@ -84,4 +84,4 @@ import{b as e,t as i}from"./index-DS3f5kjc.js";const a=e.form`
   @media (width > 1439px) {
     margin-inline-start: ${i.spacing(40)};
   }
-`;export{o as B,a as S,s as T,l as a,t as b};
+`;export{o as B,a as S,l as T,s as a,t as b};

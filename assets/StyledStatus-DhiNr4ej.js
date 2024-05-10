@@ -1,4 +1,4 @@
-import{b as i,d as e,t as r,P as c,j as s}from"./index-DS3f5kjc.js";const a=i.div`
+import{b as i,d as e,t as r,P as c,j as s}from"./index-LKkeZSUJ.js";const a=i.div`
   inline-size: 92px;
   block-size: 25px;
 
