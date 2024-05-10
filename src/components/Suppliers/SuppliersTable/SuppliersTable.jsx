@@ -3,7 +3,11 @@ import {
   HeaderSubTitle,
   HeaderTitle,
 } from '../../Dashboard/RecentCustomersTable/RecentCustomTable.styled';
-import { BtnWrapper, Table, TableThumb } from '../../Orders/OrdersTable/OrdersTable.styled';
+import {
+  BtnWrapper,
+  Table,
+  TableThumb,
+} from '../../Orders/OrdersTable/OrdersTable.styled';
 import { PopUp } from '../../PopUp/PopUp';
 import { EditSuppliers } from '../../PopUp/EditSuppliers/EditSuppliers';
 import { useEffect, useState } from 'react';
@@ -12,6 +16,7 @@ import { BtnOvalChange } from './SuppliersTable.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSuppliers } from '../../../redux/pharmacy/pharmacySelectors';
 import { getSuppliers } from '../../../redux/pharmacy/pharmacyOperations';
+import { Popover } from 'antd';
 import sprite from '../../../assets/sprite.svg';
 
 export const SuppliersTable = () => {
@@ -35,8 +40,12 @@ export const SuppliersTable = () => {
     document.body.style.overflow = '';
   };
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   useEffect(() => {
-    dispatch(getSuppliers({page}));
+    dispatch(getSuppliers({ page }));
   }, [dispatch, page]);
 
   return (
@@ -59,26 +68,36 @@ export const SuppliersTable = () => {
               <HeaderSubTitle>Action</HeaderSubTitle>
             </tr>
             {suppliers.result?.map(item => (
-              <tr key={item._id}>
-                <FirstRow>
-                  <span>{item.name}</span>
-                </FirstRow>
-                <td>{item.address}</td>
-                <td>{item.suppliers}</td>
-                <td>{item.date}</td>
-                <td>{item.amount.slice(1)}</td>
-                <td>
-                  <StyledStatus prop={item.status} $variant={item.status} />
-                </td>
-                <td>
-                  <BtnOvalChange onClick={openModal}>
-                    <svg>
-                      <use href={`${sprite}#icon-edit`} />
-                    </svg>
-                    <span>Edit</span>
-                  </BtnOvalChange>
-                </td>
-              </tr>
+              <>
+                <tr key={item._id}>
+                  <FirstRow>
+                    <span>{item.name}</span>
+                  </FirstRow>
+                  <td>{item.address}</td>
+                  <td>{item.suppliers}</td>
+                  <td>{item.date}</td>
+                  <td>{item.amount}</td>
+                  <td>
+                    <StyledStatus
+                      prop={capitalizeFirstLetter(item.status)}
+                      $variant={capitalizeFirstLetter(item.status)}
+                    />
+                  </td>
+                  <td>
+                    <Popover content="Click to edit" trigger="hover">
+                      <BtnOvalChange onClick={openModal}>
+                        <svg>
+                          <use href={`${sprite}#icon-edit`} />
+                        </svg>
+                        <span>Edit</span>
+                      </BtnOvalChange>
+                    </Popover>
+                  </td>
+                </tr>
+                <PopUp isOpen={isModalOpen} onRequestClose={closeModal}>
+                  <EditSuppliers onRequestClose={closeModal} item={item} />
+                </PopUp>
+              </>
             ))}
           </tbody>
         </Table>
@@ -102,9 +121,6 @@ export const SuppliersTable = () => {
           🔽
         </button>
       </BtnWrapper>
-      <PopUp isOpen={isModalOpen} onRequestClose={closeModal}>
-        <EditSuppliers onRequestClose={closeModal} />
-      </PopUp>
     </>
   );
 };

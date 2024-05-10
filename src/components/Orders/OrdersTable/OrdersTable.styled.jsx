@@ -55,6 +55,14 @@ export const BtnWrapper = styled.div`
   padding-block: ${theme.spacing(10)};
   display: flex;
   justify-content: space-between;
+
+  button {
+    transition: 1s;
+    &:is(:hover, :focus) {
+      scale: 1.1;
+    }
+  }
+
   span {
     color: ${theme.colors.primary};
   }

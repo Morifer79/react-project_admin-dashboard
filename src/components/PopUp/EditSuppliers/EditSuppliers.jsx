@@ -8,20 +8,25 @@ import { StyledButton } from '../../StyledButton/StyledButton';
 import { InputWrapper, StyledInput } from '../../Auth/Auth.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { StyledDatePicker } from '../AddSuppliers/AddSuppliers.styled';
+import { useDispatch } from 'react-redux';
+import { updateSupplier } from '../../../redux/pharmacy/pharmacyOperations';
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
+import * as yup from 'yup';
 
 const supplierSchema = yup.object({
-  suppliers: yup.string().trim().required('Suppliers is required field'),
-  address: yup.string().trim().required('Address is required field'),
-  company: yup.string().trim().required('Company is required field'),
-  delivery: yup.string().trim().required('Delivery is required field'),
-  ammount: yup.string().trim().required('Ammount is required field'),
-  status: yup.string().required('Status is required field'),
+  name: yup.string().trim(),
+  address: yup.string().trim(),
+  suppliers: yup.string().trim(),
+  date: yup.string().trim(),
+  amount: yup.string().trim(),
+  status: yup.string(),
 });
 
-export const EditSuppliers = () => {
+export const EditSuppliers = ({ onRequestClose, item }) => {
+  const dispatch = useDispatch();
+
   const {
     reset,
     register,
@@ -32,9 +37,12 @@ export const EditSuppliers = () => {
     resolver: yupResolver(supplierSchema),
   });
 
+  const id = item._id;
+
   const onSubmit = data => {
-    console.log(data);
+    dispatch(updateSupplier({ id: id, supplierData: data }));
     reset();
+    onRequestClose();
   };
 
   return (
@@ -43,11 +51,12 @@ export const EditSuppliers = () => {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <InputWrapper>
           <StyledInput
-            {...register('suppliers', { autoComplete: 'off' })}
+            {...register('name', { autoComplete: 'off' })}
             placeholder="Suppliers Info"
-            style={{ borderColor: errors.suppliers && '#E85050' }}
+            style={{ borderColor: errors.name && '#E85050' }}
+            defaultValue={item.name}
           />
-          <p>{errors.suppliers?.message}</p>
+          <p>{errors.name?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
@@ -55,24 +64,25 @@ export const EditSuppliers = () => {
             {...register('address', { autoComplete: 'off' })}
             placeholder="Address"
             style={{ borderColor: errors.address && '#E85050' }}
+            defaultValue={item.address}
           />
           <p>{errors.address?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
           <StyledInput
-            {...register('company', { autoComplete: 'off' })}
+            {...register('suppliers', { autoComplete: 'off' })}
             placeholder="Company"
-            style={{ borderColor: errors.company && '#E85050' }}
+            style={{ borderColor: errors.suppliers && '#E85050' }}
+            defaultValue={item.suppliers}
           />
-          <p>{errors.company?.message}</p>
+          <p>{errors.suppliers?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
           <Controller
             control={control}
-            name="delivery"
-            rules={{ required: 'Delivery is required field' }}
+            name="date"
             render={({ field, fieldState }) => {
               return (
                 <StyledDatePicker
@@ -82,6 +92,7 @@ export const EditSuppliers = () => {
                   onBlur={field.onBlur}
                   placeholder="Delivery date"
                   value={field.value ? dayjs(field.value) : null}
+                  defaultValue={item.name}
                   onChange={date => {
                     field.onChange(date ? date.valueOf() : null);
                   }}
@@ -89,16 +100,17 @@ export const EditSuppliers = () => {
               );
             }}
           />
-          <p>{errors.delivery?.message}</p>
+          <p>{errors.date?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
           <StyledInput
-            {...register('ammount', { autoComplete: 'off' })}
-            placeholder="Ammount"
-            style={{ borderColor: errors.ammount && '#E85050' }}
+            {...register('amount', { autoComplete: 'off' })}
+            placeholder="amount"
+            style={{ borderColor: errors.amount && '#E85050' }}
+            defaultValue={item.amount}
           />
-          <p>{errors.ammount?.message}</p>
+          <p>{errors.amount?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
@@ -106,8 +118,8 @@ export const EditSuppliers = () => {
             {...register('status')}
             style={{ borderColor: errors.status && '#E85050' }}
           >
-            <option value="status" selected hidden>
-              Status
+            <option value={item.status} selected>
+              {item.status}
             </option>
             <option value="active">Active</option>
             <option value="deactive">Deactive</option>
@@ -126,4 +138,9 @@ export const EditSuppliers = () => {
       </StyledForm>
     </ModalBody>
   );
+};
+
+EditSuppliers.propTypes = {
+  onRequestClose: PropTypes.func,
+  item: PropTypes.any,
 };

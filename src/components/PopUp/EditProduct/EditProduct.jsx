@@ -2,24 +2,23 @@ import { StyledButton } from '../../StyledButton/StyledButton';
 import { InputWrapper, StyledInput } from '../../Auth/Auth.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { BtnWrapper, ModalBody, StyledForm, StyledSelect } from '../AddProduct/AddProduct.styled';
+import { useDispatch } from 'react-redux';
+import { updateProduct } from '../../../redux/pharmacy/pharmacyOperations';
+import PropTypes from 'prop-types';
+import * as yup from 'yup';
 
 const productSchema = yup.object({
-  product: yup.string().trim().required('Product is required field'),
-  category: yup
-    .string()
-    .oneOf(
-      ['medicine', 'heart', 'head', 'leg', 'dental-care', 'skin - care'],
-      'Invalid Job Type'
-    )
-    .required('Category is required field'),
-  suppliers: yup.string().trim().required('Suppliers is required field'),
-  stock: yup.string().trim().required('Stock is required field'),
-  price: yup.string().trim().required('Price is required field'),
+  name: yup.string().trim(),
+  category: yup.string(),
+  suppliers: yup.string().trim(),
+  stock: yup.string().trim(),
+  price: yup.string().trim(),
 });
 
-export const EditData = () => {
+export const EditProduct = ({onRequestClose, item}) => {
+  const dispatch = useDispatch();
+
   const {
     reset,
     register,
@@ -29,9 +28,12 @@ export const EditData = () => {
     resolver: yupResolver(productSchema),
   });
 
+  const id = item._id;
+
   const onSubmit = data => {
-    console.log(data);
+    dispatch(updateProduct({ id: id, productData: data }));
     reset();
+    onRequestClose();
   };
 
   return (
@@ -40,11 +42,12 @@ export const EditData = () => {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <InputWrapper>
           <StyledInput
-            {...register('product', { autoComplete: 'off' })}
+            {...register('name', { autoComplete: 'off' })}
             placeholder="Product Info"
-            style={{ borderColor: errors.product && '#E85050' }}
+            style={{ borderColor: errors.name && '#E85050' }}
+            defaultValue={item.name}
           />
-          <p>{errors.product?.message}</p>
+          <p>{errors.name?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
@@ -52,8 +55,8 @@ export const EditData = () => {
             {...register('category')}
             style={{ borderColor: errors.category && '#E85050' }}
           >
-            <option value="category" selected hidden>
-              Category
+            <option value={item.category} selected>
+              {item.category}
             </option>
             <option value="medicine">Medicine</option>
             <option value="heart">Heart</option>
@@ -71,6 +74,7 @@ export const EditData = () => {
             {...register('suppliers', { autoComplete: 'off' })}
             placeholder="Suppliers"
             style={{ borderColor: errors.suppliers && '#E85050' }}
+            defaultValue={item.suppliers}
           />
           <p>{errors.suppliers?.message}</p>
         </InputWrapper>
@@ -80,6 +84,7 @@ export const EditData = () => {
             {...register('stock', { autoComplete: 'off' })}
             placeholder="Stock"
             style={{ borderColor: errors.stock && '#E85050' }}
+            defaultValue={item.stock}
           />
           <p>{errors.stock?.message}</p>
         </InputWrapper>
@@ -89,6 +94,7 @@ export const EditData = () => {
             {...register('price', { autoComplete: 'off' })}
             placeholder="Price"
             style={{ borderColor: errors.price && '#E85050' }}
+            defaultValue={item.price}
           />
           <p>{errors.price?.message}</p>
         </InputWrapper>
@@ -104,4 +110,9 @@ export const EditData = () => {
       </StyledForm>
     </ModalBody>
   );
+};
+
+EditProduct.propTypes = {
+  onRequestClose: PropTypes.func,
+  item: PropTypes.any,
 };

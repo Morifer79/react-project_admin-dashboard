@@ -3,17 +3,22 @@ import {
   HeaderSubTitle,
   HeaderTitle,
 } from '../../Dashboard/RecentCustomersTable/RecentCustomTable.styled';
-import { BtnWrapper, Table, TableThumb } from '../../Orders/OrdersTable/OrdersTable.styled';
+import {
+  BtnWrapper,
+  Table,
+  TableThumb,
+} from '../../Orders/OrdersTable/OrdersTable.styled';
+import { EditProduct } from '../../PopUp/EditProduct/EditProduct';
 import { BtnChange, BtnChangeWrapper } from './ProductsTable.styled';
 import { PopUp } from '../../PopUp/PopUp';
-import { EditData } from '../../PopUp/EditData/EditData';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../../redux/pharmacy/pharmacyOperations';
+import { deleteProduct, getProducts } from '../../../redux/pharmacy/pharmacyOperations';
 import { selectProducts } from '../../../redux/pharmacy/pharmacySelectors';
 import { Popover } from 'antd';
 import sprite from '../../../assets/sprite.svg';
 import noImg from '../../../assets/noImg.png';
+
 
 export const ProductsTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,7 +42,7 @@ export const ProductsTable = () => {
   };
 
   useEffect(() => {
-    dispatch(getProducts({page}));
+    dispatch(getProducts({ page }));
   }, [dispatch, page]);
 
   return (
@@ -59,38 +64,43 @@ export const ProductsTable = () => {
               <HeaderSubTitle>Actions</HeaderSubTitle>
             </tr>
             {products.result?.map(item => (
-              <tr key={item._id}>
-                <FirstRow>
-                  <img src={item.image ? item.image : noImg} alt="user" />
-                  <span>{item.name}</span>
-                </FirstRow>
-                <td>{item.category}</td>
-                <td>{item.stock}</td>
-                <td>{item.suppliers}</td>
-                <td>{item.price}</td>
-                <td>
-                  <BtnChangeWrapper>
-                    <Popover content="Click to edit" trigger="hover">
-                      <BtnChange onClick={openModal}>
-                        <svg>
-                          <use href={`${sprite}#icon-edit`} />
-                        </svg>
-                      </BtnChange>
-                    </Popover>
-                    <Popover
-                      content="You`re about to delete an item!"
-                      title="Caution!"
-                      trigger="hover"
-                    >
-                      <BtnChange>
-                        <svg>
-                          <use href={`${sprite}#icon-trash`} />
-                        </svg>
-                      </BtnChange>
-                    </Popover>
-                  </BtnChangeWrapper>
-                </td>
-              </tr>
+              <>
+                <tr key={item._id}>
+                  <FirstRow>
+                    <img src={item.image ? item.image : noImg} alt="user" />
+                    <span>{item.name}</span>
+                  </FirstRow>
+                  <td>{item.category}</td>
+                  <td>{item.stock}</td>
+                  <td>{item.suppliers}</td>
+                  <td>{item.price}</td>
+                  <td>
+                    <BtnChangeWrapper>
+                      <Popover content="Click to edit" trigger="hover">
+                        <BtnChange onClick={openModal}>
+                          <svg>
+                            <use href={`${sprite}#icon-edit`} />
+                          </svg>
+                        </BtnChange>
+                      </Popover>
+                      <Popover
+                        content="You`re about to delete an item!"
+                        title="Caution!"
+                        trigger="hover"
+                      >
+                        <BtnChange onClick={()=>dispatch(deleteProduct(item._id))}>
+                          <svg>
+                            <use href={`${sprite}#icon-trash`} />
+                          </svg>
+                        </BtnChange>
+                      </Popover>
+                    </BtnChangeWrapper>
+                  </td>
+                </tr>
+                <PopUp isOpen={isModalOpen} onRequestClose={closeModal}>
+                  <EditProduct onRequestClose={closeModal} item={item} />
+                </PopUp>
+              </>
             ))}
           </tbody>
         </Table>
@@ -114,9 +124,6 @@ export const ProductsTable = () => {
           🔽
         </button>
       </BtnWrapper>
-      <PopUp isOpen={isModalOpen} onRequestClose={closeModal}>
-        <EditData onRequestClose={closeModal} />
-      </PopUp>
     </>
   );
 };

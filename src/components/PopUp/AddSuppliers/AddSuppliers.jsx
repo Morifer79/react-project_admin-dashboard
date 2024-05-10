@@ -8,24 +8,27 @@ import { StyledButton } from '../../StyledButton/StyledButton';
 import { InputWrapper, StyledInput } from '../../Auth/Auth.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
-// import { DatePicker } from 'antd';
-import * as yup from 'yup';
-import dayjs from 'dayjs';
 import { StyledDatePicker } from './AddSuppliers.styled';
+import PropTypes from 'prop-types';
+import dayjs from 'dayjs';
+import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { addSupplier } from '../../../redux/pharmacy/pharmacyOperations';
 
 const supplierSchema = yup.object({
-  suppliers: yup.string().trim().required('Suppliers is required field'),
+  name: yup.string().trim().required('Suppliers is required field'),
   address: yup.string().trim().required('Address is required field'),
-  company: yup.string().trim().required('Company is required field'),
-  delivery: yup.string().trim().required('Delivery is required field'),
-  ammount: yup.string().trim().required('Ammount is required field'),
+  suppliers: yup.string().trim().required('Company is required field'),
+  date: yup.string().trim().required('Delivery is required field'),
+  amount: yup.string().trim().required('Amount is required field'),
   status: yup
     .string()
     .oneOf(['active', 'deactive'], 'Invalid Job Type')
     .required('Status is required field'),
 });
 
-export const AddSuppliers = () => {
+export const AddSuppliers = ({ onRequestClose }) => {
+  const dispatch = useDispatch();
 
   const {
     reset,
@@ -38,8 +41,9 @@ export const AddSuppliers = () => {
   });
 
   const onSubmit = data => {
-    console.log(data);
+    dispatch(addSupplier(data));
     reset();
+    onRequestClose();
   };
 
   return (
@@ -48,11 +52,11 @@ export const AddSuppliers = () => {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <InputWrapper>
           <StyledInput
-            {...register('suppliers', { autoComplete: 'off' })}
+            {...register('name', { autoComplete: 'off' })}
             placeholder="Suppliers Info"
-            style={{ borderColor: errors.suppliers && '#E85050' }}
+            style={{ borderColor: errors.name && '#E85050' }}
           />
-          <p>{errors.suppliers?.message}</p>
+          <p>{errors.name?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
@@ -66,17 +70,17 @@ export const AddSuppliers = () => {
 
         <InputWrapper>
           <StyledInput
-            {...register('company', { autoComplete: 'off' })}
+            {...register('suppliers', { autoComplete: 'off' })}
             placeholder="Company"
-            style={{ borderColor: errors.company && '#E85050' }}
+            style={{ borderColor: errors.suppliers && '#E85050' }}
           />
-          <p>{errors.company?.message}</p>
+          <p>{errors.suppliers?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
           <Controller
             control={control}
-            name="delivery"
+            name="date"
             rules={{ required: 'Delivery is required field' }}
             render={({ field, fieldState }) => {
               return (
@@ -94,16 +98,16 @@ export const AddSuppliers = () => {
               );
             }}
           />
-          <p>{errors.delivery?.message}</p>
+          <p>{errors.date?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
           <StyledInput
-            {...register('ammount', { autoComplete: 'off' })}
-            placeholder="Ammount"
-            style={{ borderColor: errors.ammount && '#E85050' }}
+            {...register('amount', { autoComplete: 'off' })}
+            placeholder="amount"
+            style={{ borderColor: errors.amount && '#E85050' }}
           />
-          <p>{errors.ammount?.message}</p>
+          <p>{errors.amount?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
@@ -131,4 +135,8 @@ export const AddSuppliers = () => {
       </StyledForm>
     </ModalBody>
   );
+};
+
+AddSuppliers.propTypes = {
+  onRequestClose: PropTypes.func,
 };

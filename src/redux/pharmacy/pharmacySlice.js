@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   getDashboard,
   getOrders,
@@ -11,6 +11,16 @@ import {
   updateSupplier,
   getCustomers,
 } from './pharmacyOperations';
+
+const pending = state => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+const rejected = (state, { error }) => {
+  state.isLoading = false;
+  state.error = error.message;
+};
 
 export const pharmacySlice = createSlice({
   name: 'pharmacy',
@@ -26,148 +36,98 @@ export const pharmacySlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(getDashboard.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(getDashboard.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.dashboard = payload;
       })
-      .addCase(getDashboard.rejected, (state, { error }) => {
-        state.loading = false;
-        state.error = error.message;
-      })
 
-      .addCase(getOrders.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(getOrders.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.orders = payload;
       })
-      .addCase(getOrders.rejected, (state, { error }) => {
-        state.loading = false;
-        state.error = error.message;
-      })
 
-      .addCase(getProducts.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(getProducts.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.products = payload;
       })
-      .addCase(getProducts.rejected, (state, { error }) => {
-        state.loading = false;
-        state.error = error.message;
-      })
 
-      .addCase(addProduct.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.products = [...state.products, payload];
-      })
-      .addCase(addProduct.rejected, (state, { error }) => {
-        state.loading = false;
-        state.error = error.message;
+        state.products.total = state.products.total + 1;
+        state.products.result = [...state.products.result, payload];
       })
 
-      .addCase(updateProduct.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(updateProduct.fulfilled, (state, { payload }) => {
         state.loading = false;
-        const index = state.products.findIndex(
+        const index = state.products.result.findIndex(
           item => item._id === payload._id
         );
         if (index !== -1) {
-          state.products[index] = payload;
+          state.products.result[index] = payload;
         }
       })
-      .addCase(updateProduct.rejected, (state, { error }) => {
-        state.loading = false;
-        state.error = error.message;
-      })
 
-      .addCase(deleteProduct.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(deleteProduct.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.products = state.products.filter(
-          item => item.id !== payload
-        );
-      })
-      .addCase(deleteProduct.rejected, (state, { error }) => {
-        state.loading = false;
-        state.error = error.message;
+        state.products = state.products.result.filter(item => item.id !== payload);
       })
 
-      .addCase(getSuppliers.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(getSuppliers.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.suppliers = payload;
-        state.products = [...state.products, payload];
-      })
-      .addCase(getSuppliers.rejected, (state, { error }) => {
-        state.loading = false;
-        state.error = error.message;
+        // state.products = [...state.products, payload];
       })
 
-      .addCase(addSupplier.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(addSupplier.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.suppliers = [...state.suppliers, payload];
-      })
-      .addCase(addSupplier.rejected, (state, { error }) => {
-        state.loading = false;
-        state.error = error.message;
+        state.suppliers.result = [...state.suppliers, payload];
       })
 
-      .addCase(updateSupplier.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(updateSupplier.fulfilled, (state, { payload }) => {
         state.loading = false;
-        const index = state.suppliers.findIndex(
+        const index = state.suppliers.result.findIndex(
           person => person._id === payload._id
         );
         if (index !== -1) {
-          state.suppliers[index] = payload;
+          state.suppliers.result[index] = payload;
         }
       })
-      .addCase(updateSupplier.rejected, (state, { error }) => {
-        state.loading = false;
-        state.error = error.message;
-      })
 
-      .addCase(getCustomers.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(getCustomers.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.customers = payload;
       })
-      .addCase(getCustomers.rejected, (state, { error }) => {
-        state.loading = false;
-        state.error = error.message;
-      });
+
+      .addMatcher(
+        isAnyOf(
+          getDashboard.pending,
+          getOrders.pending,
+          getProducts.pending,
+          addProduct.pending,
+          updateProduct.pending,
+          deleteProduct.pending,
+          getSuppliers.pending,
+          addSupplier.pending,
+          updateSupplier.pending,
+          getCustomers.pending
+        ),
+        pending
+      )
+      .addMatcher(
+        isAnyOf(
+          getDashboard.rejected,
+          getOrders.rejected,
+          getProducts.rejected,
+          addProduct.rejected,
+          updateProduct.rejected,
+          deleteProduct.rejected,
+          getSuppliers.rejected,
+          addSupplier.rejected,
+          updateSupplier.rejected,
+          getCustomers.rejected
+        ),
+        rejected
+      );
   },
 });
 

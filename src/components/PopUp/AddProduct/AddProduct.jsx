@@ -9,9 +9,12 @@ import { InputWrapper, StyledInput } from '../../Auth/Auth.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../../redux/pharmacy/pharmacyOperations';
+import PropTypes from 'prop-types';
 
 const productSchema = yup.object({
-  product: yup.string().trim().required('Product is required field'),
+  name: yup.string().trim().required('Name is required field'),
   category: yup
     .string()
     .oneOf(
@@ -24,7 +27,9 @@ const productSchema = yup.object({
   price: yup.string().trim().required('Price is required field'),
 });
 
-export const AddProduct = () => {
+export const AddProduct = ({onRequestClose}) => {
+  const dispatch = useDispatch();
+
   const {
     reset,
     register,
@@ -35,8 +40,9 @@ export const AddProduct = () => {
   });
 
   const onSubmit = data => {
-    console.log(data);
+    dispatch(addProduct(data));
     reset();
+    onRequestClose();
   };
 
   return (
@@ -45,11 +51,11 @@ export const AddProduct = () => {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <InputWrapper>
           <StyledInput
-            {...register('product', { autoComplete: 'off' })}
+            {...register('name', { autoComplete: 'off' })}
             placeholder="Product Info"
-            style={{ borderColor: errors.product && '#E85050' }}
+            style={{ borderColor: errors.name && '#E85050' }}
           />
-          <p>{errors.product?.message}</p>
+          <p>{errors.name?.message}</p>
         </InputWrapper>
 
         <InputWrapper>
@@ -109,4 +115,8 @@ export const AddProduct = () => {
       </StyledForm>
     </ModalBody>
   );
+};
+
+AddProduct.propTypes = {
+  onRequestClose: PropTypes.func,
 };
