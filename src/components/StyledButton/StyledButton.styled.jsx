@@ -57,8 +57,8 @@ export const Button = styled.button`
       }
       padding: ${theme.spacing(6)} ${theme.spacing(21)};
       border: 1px solid transparent;
-      background-color: #1d1e2119;
-      color: #1d1e2166;
+      background-color: ${theme.colors.alfablue};
+      color: ${theme.colors.alfadarkblue};
       &:is(:hover, :focus) {
         border: 1px solid ${theme.colors.primary};
         background-color: transparent;

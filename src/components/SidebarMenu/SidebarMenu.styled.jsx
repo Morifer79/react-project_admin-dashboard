@@ -17,7 +17,7 @@ export const SidebarNav = styled.nav`
 
   inline-size: 78px;
   block-size: 100%;
-  border: 1px solid #1d1e2119;
+  border: 1px solid ${theme.colors.alfablue};
   background-color: ${theme.colors.secondary};
 
   animation: fade-in 0.8s ease-in-out;

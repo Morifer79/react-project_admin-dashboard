@@ -5,9 +5,9 @@ import { theme } from "../../../stylesheet/theme";
 export const StyledDatePicker = styled(DatePicker)`
   cursor: pointer;
   position: relative;
-  padding: 13px 18px;
+  padding: ${theme.spacing(6.5)} ${theme.spacing(9)};
   inline-size: 100%;
-  border: 1px solid #1d1e2119;
+  border: 1px solid ${theme.colors.alfablue};
   border-radius: ${theme.radii.xxl};
   background: ${theme.colors.light};
   outline: none;
@@ -17,7 +17,7 @@ export const StyledDatePicker = styled(DatePicker)`
   line-height: 1.5;
 
   &::placeholder {
-    color: #1d1e2166;
+    color: ${theme.colors.alfadarkblue};
     font-size: 12px;
     font-weight: 400;
     line-height: 1.5;

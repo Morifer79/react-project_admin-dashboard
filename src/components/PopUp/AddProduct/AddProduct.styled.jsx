@@ -33,8 +33,8 @@ export const StyledForm = styled.form`
 
 export const StyledSelect = styled.select`
   inline-size: 295px;
-  padding: 13px 18px;
-  border: 1px solid #1d1e2119;
+  padding: ${theme.spacing(6.5)} ${theme.spacing(9)};
+  border: 1px solid ${theme.colors.alfablue};
   border-radius: ${theme.radii.xxl};
   background: ${theme.colors.light};
   outline: none;
@@ -59,7 +59,7 @@ export const StyledSelect = styled.select`
 `;
 
 export const BtnWrapper = styled.div`
-  margin-block-start: 26px;
+  margin-block-start: ${theme.spacing(13)};
   display: flex;
   align-items: center;
   gap: ${theme.spacing(4)};

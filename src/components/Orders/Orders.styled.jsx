@@ -14,7 +14,7 @@ export const StyledInput = styled.input`
   position: relative;
   padding: 13px 18px;
   inline-size: 100%;
-  border: 1px solid #1d1e2119;
+  border: 1px solid ${theme.colors.alfablue};
   border-radius: ${theme.radii.xxl};
   background: ${theme.colors.light};
   outline: none;
@@ -28,7 +28,7 @@ export const StyledInput = styled.input`
   }
 
   &::placeholder {
-    color: #1d1e2166;
+    color: ${theme.colors.alfadarkblue};
     font-size: 12px;
     font-weight: 400;
     line-height: 1.5;

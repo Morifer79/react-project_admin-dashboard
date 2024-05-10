@@ -11,6 +11,8 @@ export const theme = {
     confirmed: '#8059E4',
     accent: '#E85050',
     light: '#FFFFFF',
+    alfablue: '#1d1e2119',
+    alfadarkblue: '#1d1e2166',
   },
   radii: {
     s: '8px',

@@ -29,6 +29,6 @@ export const Label = styled.div`
     $variant === 'Error' &&
     css`
       color: ${theme.colors.main};
-      background-color: #1d1e2119;
+      background-color: ${theme.colors.alfablue};
     `};
 `;

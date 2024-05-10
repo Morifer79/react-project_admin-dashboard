@@ -6,20 +6,20 @@ import { NavLink } from 'react-router-dom';
 export const FlexBox = styled.div`
   @media (width > 1439px) {
     display: flex;
-    gap: 150px;
+    gap: ${theme.spacing(75)};
   }
 `;
 
 export const LogoBox = styled.div`
-  margin-block: 24px 148px;
+  margin-block: ${theme.spacing(12)} ${theme.spacing(74)};
   display: flex;
   align-items: center;
   gap: ${theme.spacing(7)};
   @media (width > 767px) {
-    margin-block-end: 204px;
+    margin-block-end: ${theme.spacing(102)};
   }
   @media (width > 1439px) {
-    margin-block: 28px 226px;
+    margin-block: ${theme.spacing(14)} ${theme.spacing(113)};
   }
   img {
     inline-size: 44px;
@@ -33,10 +33,10 @@ export const LogoBox = styled.div`
 `;
 
 export const Title = styled.div`
-  margin-block-end: 40px;
+  margin-block-end: ${theme.spacing(20)};
   position: relative;
   @media (width > 767px) {
-    margin-block-end: 50px;
+    margin-block-end: ${theme.spacing(25)};
   }
   h1 {
     max-width: 335px;
@@ -80,19 +80,19 @@ export const InputWrapper = styled.div`
   p {
     position: absolute;
     top: 46px;
-    margin-inline-start: 20px;
+    margin-inline-start: ${theme.spacing(10)};
     color: ${theme.colors.accent};
     font-size: 10px;
   }
 
   &[id='password'] {
-    margin-block: 14px 40px;
+    margin-block: ${theme.spacing(7)} ${theme.spacing(20)};
   }
 `;
 
 export const StyledInput = styled.input`
   position: relative;
-  padding: 13px 18px;
+  padding: ${theme.spacing(6.5)} ${theme.spacing(9)};
   inline-size: 100%;
   border: 1px solid #1d1e2119;
   border-radius: ${theme.radii.xxl};
@@ -104,7 +104,7 @@ export const StyledInput = styled.input`
   line-height: 1.5;
 
   &::placeholder {
-    color: #1d1e2166;
+    color: ${theme.colors.alfadarkblue};
     font-size: 12px;
     font-weight: 400;
     line-height: 1.5;

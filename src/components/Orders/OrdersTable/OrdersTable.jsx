@@ -4,12 +4,12 @@ import {
   HeaderTitle,
 } from '../../Dashboard/RecentCustomersTable/RecentCustomTable.styled';
 import { BtnWrapper, Table, TableThumb } from './OrdersTable.styled';
-import noImg from '../../../assets/noImg.png';
 import { StyledStatus } from '../../StyledStatus/StyledStatus';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrders } from '../../../redux/pharmacy/pharmacyOperations';
 import { selectOrders } from '../../../redux/pharmacy/pharmacySelectors';
+import noImg from '../../../assets/noImg.png';
 
 export const OrdersTable = () => {
   const [page, setPage] = useState(1);

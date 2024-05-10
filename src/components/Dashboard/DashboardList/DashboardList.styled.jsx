@@ -19,7 +19,7 @@ export const CardList = styled.ul`
     block-size: 98px;
 
     cursor: pointer;
-    border: 1px solid #1d1e2119;
+    border: 1px solid ${theme.colors.alfablue};
     border-radius: ${theme.radii.l};
     background-color: ${theme.colors.light};
     transition: border-color ${theme.transition};
@@ -58,7 +58,7 @@ export const FlexBox = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: #1d1e2166;
+  color: ${theme.colors.alfadarkblue};
   font-size: 12px;
   font-weight: 400;
   line-height: 1.166;

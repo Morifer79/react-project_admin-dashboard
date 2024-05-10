@@ -21,10 +21,9 @@ export const Wrapper = styled.div`
 `;
 
 export const TableBodyThumb = styled.div`
-  max-block-size: 412px;
   overflow: auto;
   @media (width > 767px) {
-    max-block-size: 448px;
+    max-block-size: 435px;
   }
   @media (width > 1439px) {
     max-inline-size: 630px;
@@ -76,7 +75,7 @@ export const HeaderTitle = styled.th`
 `;
 
 export const HeaderSubTitle = styled.td`
-  color: #1d1e2166;
+  color: ${theme.colors.alfadarkblue};
   padding: ${theme.spacing(5)} ${theme.spacing(7)};
   @media (width > 767px) {
     padding: ${theme.spacing(10)} ${theme.spacing(14.5)};

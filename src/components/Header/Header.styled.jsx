@@ -50,7 +50,7 @@ export const Title = styled.h2`
 `;
 
 export const SubTitle = styled.h3`
-  color: #1d1e2166;
+  color: ${theme.colors.alfadarkblue};
   font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
