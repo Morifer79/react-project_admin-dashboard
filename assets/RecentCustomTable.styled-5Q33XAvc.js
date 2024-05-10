@@ -1,4 +1,4 @@
-import{b as e,t as i}from"./index-aiNyUlUS.js";const n=a=>a.pharmacy.dashboard,d=a=>a.pharmacy.orders,p=a=>a.pharmacy.suppliers,t=a=>a.pharmacy.products,c=a=>a.pharmacy.customers,o=e.div`
+import{b as e,t as i}from"./index-kUjzZVVH.js";const n=a=>a.pharmacy.dashboard,d=a=>a.pharmacy.orders,p=a=>a.pharmacy.suppliers,t=a=>a.pharmacy.products,c=a=>a.pharmacy.customers,o=e.div`
   margin-block: ${i.spacing(10)} ${i.spacing(40)};
   max-inline-size: 335px;
   overflow: auto;
@@ -16,6 +16,7 @@ import{b as e,t as i}from"./index-aiNyUlUS.js";const n=a=>a.pharmacy.dashboard,d
     gap: ${i.spacing(10)};
   }
 `,l=e.div`
+  border-radius: ${i.radii.s};
   overflow: auto;
   @media (width > 767px) {
     max-block-size: 435px;
