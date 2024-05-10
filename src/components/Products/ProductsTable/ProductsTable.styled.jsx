@@ -17,7 +17,7 @@ export const BtnChange = styled.button`
   }
 `;
 
-export const BtnWrapper = styled.div`
+export const BtnChangeWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: ${theme.spacing(4)};

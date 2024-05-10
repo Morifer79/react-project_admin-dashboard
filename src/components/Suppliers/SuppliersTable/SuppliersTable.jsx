@@ -3,7 +3,7 @@ import {
   HeaderSubTitle,
   HeaderTitle,
 } from '../../Dashboard/RecentCustomersTable/RecentCustomTable.styled';
-import { Table, TableThumb } from '../../Orders/OrdersTable/OrdersTable.styled';
+import { BtnWrapper, Table, TableThumb } from '../../Orders/OrdersTable/OrdersTable.styled';
 import { PopUp } from '../../PopUp/PopUp';
 import { EditSuppliers } from '../../PopUp/EditSuppliers/EditSuppliers';
 import { useEffect, useState } from 'react';
@@ -16,8 +16,14 @@ import sprite from '../../../assets/sprite.svg';
 
 export const SuppliersTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const suppliers = useSelector(selectSuppliers);
+
+  const totalPages = Math.ceil(suppliers.total / 5);
+
+  const toBack = () => (page === 1 ? undefined : setPage(page - 1));
+  const toForward = () => (page === totalPages ? undefined : setPage(page + 1));
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -30,8 +36,8 @@ export const SuppliersTable = () => {
   };
 
   useEffect(() => {
-    dispatch(getSuppliers());
-  }, [dispatch]);
+    dispatch(getSuppliers({page}));
+  }, [dispatch, page]);
 
   return (
     <>
@@ -52,7 +58,7 @@ export const SuppliersTable = () => {
               <HeaderSubTitle>Status</HeaderSubTitle>
               <HeaderSubTitle>Action</HeaderSubTitle>
             </tr>
-            {suppliers.map(item => (
+            {suppliers.result?.map(item => (
               <tr key={item._id}>
                 <FirstRow>
                   <span>{item.name}</span>
@@ -77,6 +83,25 @@ export const SuppliersTable = () => {
           </tbody>
         </Table>
       </TableThumb>
+      <BtnWrapper>
+        <button
+          type="button"
+          onClick={toBack}
+          disabled={page === 1 ? true : false}
+        >
+          🔼
+        </button>
+        <p>
+          <span>{page}</span> / {totalPages}
+        </p>
+        <button
+          type="button"
+          onClick={toForward}
+          disabled={page === totalPages ? true : false}
+        >
+          🔽
+        </button>
+      </BtnWrapper>
       <PopUp isOpen={isModalOpen} onRequestClose={closeModal}>
         <EditSuppliers onRequestClose={closeModal} />
       </PopUp>

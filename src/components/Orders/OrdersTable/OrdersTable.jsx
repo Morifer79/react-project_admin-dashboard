@@ -14,7 +14,6 @@ import { selectOrders } from '../../../redux/pharmacy/pharmacySelectors';
 export const OrdersTable = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-
   const orders = useSelector(selectOrders);  
 
   const totalPages = Math.ceil(orders.total / 5);

@@ -3,23 +3,28 @@ import {
   HeaderSubTitle,
   HeaderTitle,
 } from '../../Dashboard/RecentCustomersTable/RecentCustomTable.styled';
-import { Table, TableThumb } from '../../Orders/OrdersTable/OrdersTable.styled';
-import { BtnChange, BtnWrapper } from './ProductsTable.styled';
+import { BtnWrapper, Table, TableThumb } from '../../Orders/OrdersTable/OrdersTable.styled';
+import { BtnChange, BtnChangeWrapper } from './ProductsTable.styled';
 import { PopUp } from '../../PopUp/PopUp';
 import { EditData } from '../../PopUp/EditData/EditData';
 import { useEffect, useState } from 'react';
-import sprite from '../../../assets/sprite.svg';
-import noImg from '../../../assets/noImg.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../../redux/pharmacy/pharmacyOperations';
 import { selectProducts } from '../../../redux/pharmacy/pharmacySelectors';
 import { Popover } from 'antd';
+import sprite from '../../../assets/sprite.svg';
+import noImg from '../../../assets/noImg.png';
 
 export const ProductsTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-
   const products = useSelector(selectProducts);
+
+  const totalPages = Math.ceil(products.total / 5);
+
+  const toBack = () => (page === 1 ? undefined : setPage(page - 1));
+  const toForward = () => (page === totalPages ? undefined : setPage(page + 1));
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -32,8 +37,8 @@ export const ProductsTable = () => {
   };
 
   useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+    dispatch(getProducts({page}));
+  }, [dispatch, page]);
 
   return (
     <>
@@ -53,7 +58,7 @@ export const ProductsTable = () => {
               <HeaderSubTitle>Price</HeaderSubTitle>
               <HeaderSubTitle>Actions</HeaderSubTitle>
             </tr>
-            {products?.map(item => (
+            {products.result?.map(item => (
               <tr key={item._id}>
                 <FirstRow>
                   <img src={item.image ? item.image : noImg} alt="user" />
@@ -64,11 +69,8 @@ export const ProductsTable = () => {
                 <td>{item.suppliers}</td>
                 <td>{item.price}</td>
                 <td>
-                  <BtnWrapper>
-                    <Popover
-                      content="Click to edit"
-                      trigger="hover"
-                    >
+                  <BtnChangeWrapper>
+                    <Popover content="Click to edit" trigger="hover">
                       <BtnChange onClick={openModal}>
                         <svg>
                           <use href={`${sprite}#icon-edit`} />
@@ -86,13 +88,32 @@ export const ProductsTable = () => {
                         </svg>
                       </BtnChange>
                     </Popover>
-                  </BtnWrapper>
+                  </BtnChangeWrapper>
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
       </TableThumb>
+      <BtnWrapper>
+        <button
+          type="button"
+          onClick={toBack}
+          disabled={page === 1 ? true : false}
+        >
+          🔼
+        </button>
+        <p>
+          <span>{page}</span> / {totalPages}
+        </p>
+        <button
+          type="button"
+          onClick={toForward}
+          disabled={page === totalPages ? true : false}
+        >
+          🔽
+        </button>
+      </BtnWrapper>
       <PopUp isOpen={isModalOpen} onRequestClose={closeModal}>
         <EditData onRequestClose={closeModal} />
       </PopUp>

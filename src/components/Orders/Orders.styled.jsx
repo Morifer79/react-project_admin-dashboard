@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { theme } from '../../stylesheet/theme';
-// import { theme } from '../../stylesheet/theme';
 
 export const StyledForm = styled.form`
   margin-block-start: ${theme.spacing(20)};
@@ -22,9 +21,8 @@ export const StyledInput = styled.input`
 
   font-size: 12px;
   font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0px;
-  text-align: left;
+  line-height: 1.5;
+
   @media (width > 767px) {
     max-inline-size: 224px;
   }

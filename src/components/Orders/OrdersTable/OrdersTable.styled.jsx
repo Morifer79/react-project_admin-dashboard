@@ -2,15 +2,12 @@ import styled from 'styled-components';
 import { theme } from '../../../stylesheet/theme';
 
 export const TableThumb = styled.div`
-  margin-block: ${theme.spacing(10)} ${theme.spacing(70)};
+  margin-block: ${theme.spacing(10)} ${theme.spacing(5)};
   max-inline-size: 335px;
-  max-block-size: 412px;
   overflow-y: hidden;
 
   @media (width > 767px) {
-    margin-block-end: ${theme.spacing(5)};
     max-inline-size: 704px;
-    max-block-size: 500px;
   }
 
   @media (width > 1439px) {
