@@ -31,9 +31,11 @@ export const getOrders = createAsyncThunk(
 
 export const getProducts = createAsyncThunk(
   'pharmacy/allProducts',
-  async ({ page = 1, limit = 5 }, { rejectWithValue }) => {
+  async ({ page = 1, limit = 5, name = '' }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/products?page=${page}&limit=${limit}`);
+      const { data } = await axios.get(
+        `/products?page=${page}&limit=${limit}&name=${name}`
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -85,10 +87,10 @@ export const deleteProduct = createAsyncThunk(
 
 export const getSuppliers = createAsyncThunk(
   'pharmacy/allSuppliers',
-  async ({ page = 1, limit = 5 }, { rejectWithValue }) => {
+  async ({ page = 1, limit = 5, name = '' }, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `/suppliers?page=${page}&limit=${limit}`
+        `/suppliers?page=${page}&limit=${limit}&name=${name}`
       );
       return data;
     } catch (error) {
@@ -127,10 +129,10 @@ export const updateSupplier = createAsyncThunk(
 
 export const getCustomers = createAsyncThunk(
   'pharmacy/allCustomers',
-  async ({ page = 1, limit = 5 }, { rejectWithValue }) => {
+  async ({ page = 1, limit = 5, name = '' }, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `/customers?page=${page}&limit=${limit}`
+        `/customers?page=${page}&limit=${limit}&name=${name}`
       );
       return data;
     } catch (error) {

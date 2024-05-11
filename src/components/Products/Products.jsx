@@ -9,10 +9,14 @@ import { PopUp } from '../PopUp/PopUp';
 import { BtnAdd, FlexBox, FlexWrap } from './Products.styled';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
+import { getProducts } from '../../redux/pharmacy/pharmacyOperations';
+import { useDispatch } from 'react-redux';
 
 
 export const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [changeButton, setChangeButton] = useState(false);
+  const dispatch = useDispatch();
 
   const screenWidth = window.innerWidth;
 
@@ -21,8 +25,19 @@ export const Products = () => {
   });
 
   const onSubmit = data => {
-    console.log(data);
+    if (changeButton) {
+      setChangeButton(false);
+      dispatch(getProducts(data));
+      reset();
+      return;
+    }
+    setChangeButton(true);
+    dispatch(getProducts(data));
     reset();
+  };
+
+  const handleInputClick = () => {
+    setChangeButton(false);
   };
 
   const openModal = () => {
@@ -42,10 +57,14 @@ export const Products = () => {
         <FlexBox>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <StyledInput
-              {...register('filter', { autoComplete: 'off' })}
+              {...register('name', { autoComplete: 'off' })}
               placeholder="Product Name"
+              onClick={handleInputClick}
             />
-            <StyledButton prop="Filter" $variant="filter" />
+            <StyledButton
+              prop={changeButton ? 'Reset' : 'Filter'}
+              $variant="filter"
+            />
           </StyledForm>
           <FlexWrap>
             <BtnAdd onClick={openModal}>

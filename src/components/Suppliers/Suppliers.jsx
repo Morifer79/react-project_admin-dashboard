@@ -8,9 +8,13 @@ import { StyledButton } from "../StyledButton/StyledButton";
 import { useState } from "react";
 import { SuppliersTable } from "./SuppliersTable/SuppliersTable";
 import { PopUp } from "../PopUp/PopUp";
+import { useDispatch } from "react-redux";
+import { getSuppliers } from "../../redux/pharmacy/pharmacyOperations";
 
 export const Suppliers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [changeButton, setChangeButton] = useState(false);
+  const dispatch = useDispatch();
 
   const screenWidth = window.innerWidth;
 
@@ -19,8 +23,19 @@ export const Suppliers = () => {
   });
 
   const onSubmit = data => {
-    console.log(data);
+    if (changeButton) {
+      setChangeButton(false);
+      dispatch(getSuppliers(data));
+      reset();
+      return;
+    }
+    setChangeButton(true);
+    dispatch(getSuppliers(data));
     reset();
+  };
+
+  const handleInputClick = () => {
+    setChangeButton(false);
   };
 
   const openModal = () => {
@@ -40,10 +55,14 @@ export const Suppliers = () => {
         <FlexBox>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <StyledInput
-              {...register('filter', { autoComplete: 'off' })}
+              {...register('name', { autoComplete: 'off' })}
               placeholder="User Name"
+              onClick={handleInputClick}
             />
-            <StyledButton prop="Filter" $variant="filter" />
+            <StyledButton
+              prop={changeButton ? 'Reset' : 'Filter'}
+              $variant="filter"
+            />
           </StyledForm>
           <StyledButton
             prop="Add a new suppliers"
