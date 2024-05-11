@@ -8,10 +8,10 @@ import { StyledButton } from '../../StyledButton/StyledButton';
 import { InputWrapper, StyledInput } from '../../Auth/Auth.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../../redux/pharmacy/pharmacyOperations';
 import PropTypes from 'prop-types';
+import * as yup from 'yup';
 
 const productSchema = yup.object({
   name: yup.string().trim().required('Name is required field'),
@@ -23,8 +23,8 @@ const productSchema = yup.object({
     )
     .required('Category is required field'),
   suppliers: yup.string().trim().required('Suppliers is required field'),
-  stock: yup.string().trim().required('Stock is required field'),
-  price: yup.string().trim().required('Price is required field'),
+  stock: yup.number().required('Stock is required field'),
+  price: yup.number().required('Price is required field'),
 });
 
 export const AddProduct = ({onRequestClose}) => {

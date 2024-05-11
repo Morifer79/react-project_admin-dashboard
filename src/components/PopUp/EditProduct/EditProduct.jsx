@@ -12,8 +12,8 @@ const productSchema = yup.object({
   name: yup.string().trim(),
   category: yup.string(),
   suppliers: yup.string().trim(),
-  stock: yup.string().trim(),
-  price: yup.string().trim(),
+  stock: yup.number(),
+  price: yup.number(),
 });
 
 export const EditProduct = ({onRequestClose, item}) => {

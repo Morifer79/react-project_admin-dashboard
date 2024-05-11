@@ -9,21 +9,23 @@ import { InputWrapper, StyledInput } from '../../Auth/Auth.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 import { StyledDatePicker } from './AddSuppliers.styled';
+import { useDispatch } from 'react-redux';
+import { addSupplier } from '../../../redux/pharmacy/pharmacyOperations';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { addSupplier } from '../../../redux/pharmacy/pharmacyOperations';
+
 
 const supplierSchema = yup.object({
   name: yup.string().trim().required('Suppliers is required field'),
   address: yup.string().trim().required('Address is required field'),
   suppliers: yup.string().trim().required('Company is required field'),
-  date: yup.string().trim().required('Delivery is required field'),
-  amount: yup.string().trim().required('Amount is required field'),
+  date: yup.date().required('Delivery is required field'),
+  amount: yup.number().required('Amount is required field'),
   status: yup
     .string()
-    .oneOf(['active', 'deactive'], 'Invalid Job Type')
+    .oneOf(['Active', 'Deactive'], 'Invalid Job Type')
     .required('Status is required field'),
 });
 
@@ -45,6 +47,11 @@ export const AddSuppliers = ({ onRequestClose }) => {
     reset();
     onRequestClose();
   };
+
+  const dateFormat = 'MMMM D, YYYY';
+
+  dayjs.extend(customParseFormat);
+  dayjs('January 25, 1995', 'MMMM D, YYYY');
 
   return (
     <ModalBody>
@@ -91,6 +98,7 @@ export const AddSuppliers = ({ onRequestClose }) => {
                   onBlur={field.onBlur}
                   placeholder="Delivery date"
                   value={field.value ? dayjs(field.value) : null}
+                  format={dateFormat}
                   onChange={date => {
                     field.onChange(date ? date.valueOf() : null);
                   }}
@@ -104,7 +112,7 @@ export const AddSuppliers = ({ onRequestClose }) => {
         <InputWrapper>
           <StyledInput
             {...register('amount', { autoComplete: 'off' })}
-            placeholder="amount"
+            placeholder="Amount"
             style={{ borderColor: errors.amount && '#E85050' }}
           />
           <p>{errors.amount?.message}</p>
