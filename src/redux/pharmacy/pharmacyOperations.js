@@ -19,9 +19,9 @@ export const getDashboard = createAsyncThunk(
 
 export const getOrders = createAsyncThunk(
   'pharmacy/allOrders',
-  async ({ page = 1, limit = 5 }, { rejectWithValue }) => {
+  async ({ page = 1, limit = 5, name = '' }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/orders?page=${page}&limit=${limit}`);
+      const { data } = await axios.get(`/orders?page=${page}&limit=${limit}&name=${name}`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
