@@ -11,7 +11,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { StyledDatePicker } from './AddSuppliers.styled';
 import { useDispatch } from 'react-redux';
 import { addSupplier } from '../../../redux/pharmacy/pharmacyOperations';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+// import customParseFormat from 'dayjs/plugin/customParseFormat';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import * as yup from 'yup';
@@ -48,10 +48,7 @@ export const AddSuppliers = ({ onRequestClose }) => {
     onRequestClose();
   };
 
-  const dateFormat = 'MMMM D, YYYY';
-
-  dayjs.extend(customParseFormat);
-  
+  const dateFormat = 'MMMM D, YYYY';  
   
   return (
     <ModalBody>

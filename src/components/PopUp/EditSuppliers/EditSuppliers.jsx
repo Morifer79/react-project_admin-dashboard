@@ -45,6 +45,8 @@ export const EditSuppliers = ({ onRequestClose, item }) => {
     onRequestClose();
   };
 
+  const dateFormat = 'MMMM D, YYYY'; 
+
   return (
     <ModalBody>
       <h2>Edit data</h2>
@@ -89,10 +91,13 @@ export const EditSuppliers = ({ onRequestClose, item }) => {
                   status={fieldState.error ? 'error' : undefined}
                   ref={field.ref}
                   name={field.name}
+                  format={dateFormat}
                   onBlur={field.onBlur}
                   placeholder={changeDate(item.date)}
                   value={field.value ? field.value : null}
-                  onChange={date => {field.onChange(date ? date : null)}}
+                  onChange={date => {
+                    field.onChange(date ? date : null);
+                  }}
                 />
               );
             }}
