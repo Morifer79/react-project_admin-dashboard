@@ -11,9 +11,8 @@ import { Controller, useForm } from 'react-hook-form';
 import { StyledDatePicker } from '../AddSuppliers/AddSuppliers.styled';
 import { useDispatch } from 'react-redux';
 import { updateSupplier } from '../../../redux/pharmacy/pharmacyOperations';
-// import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { changeDate } from '../../../helpers/changeDate';
 import PropTypes from 'prop-types';
-import dayjs from 'dayjs';
 import * as yup from 'yup';
 
 const supplierSchema = yup.object({
@@ -21,7 +20,7 @@ const supplierSchema = yup.object({
   address: yup.string().trim(),
   suppliers: yup.string().trim(),
   date: yup.date(),
-  amount: yup.number(),
+  amount: yup.string(),
   status: yup.string(),
 });
 
@@ -45,9 +44,6 @@ export const EditSuppliers = ({ onRequestClose, item }) => {
     reset();
     onRequestClose();
   };
-
-  // dayjs.extend(customParseFormat);
-  const dateFormat = 'MMMM D, YYYY';
 
   return (
     <ModalBody>
@@ -94,12 +90,9 @@ export const EditSuppliers = ({ onRequestClose, item }) => {
                   ref={field.ref}
                   name={field.name}
                   onBlur={field.onBlur}
-                  placeholder={item.date}
-                  value={field.value ? dayjs(field.value) : null}
-                  format={dateFormat}
-                  onChange={date => {
-                    field.onChange(date ? date.valueOf() : null);
-                  }}
+                  placeholder={changeDate(item.date)}
+                  value={field.value ? field.value : null}
+                  onChange={date => {field.onChange(date ? date : null)}}
                 />
               );
             }}

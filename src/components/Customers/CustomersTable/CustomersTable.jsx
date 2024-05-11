@@ -8,7 +8,7 @@ import { getCustomers } from '../../../redux/pharmacy/pharmacyOperations';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCustomers } from '../../../redux/pharmacy/pharmacySelectors';
-import noImg from '../../../assets/noImg.png';
+import noImg from '../../../assets/noImg.jpg';
 
 export const CustomersTable = () => {
   const [page, setPage] = useState(1);

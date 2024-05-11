@@ -21,8 +21,8 @@ const supplierSchema = yup.object({
   name: yup.string().trim().required('Suppliers is required field'),
   address: yup.string().trim().required('Address is required field'),
   suppliers: yup.string().trim().required('Company is required field'),
-  date: yup.date().required('Delivery is required field'),
-  amount: yup.number().required('Amount is required field'),
+  date: yup.string().required('Delivery is required field'),
+  amount: yup.string().required('Amount is required field'),
   status: yup
     .string()
     .oneOf(['Active', 'Deactive'], 'Invalid Job Type')
@@ -51,8 +51,8 @@ export const AddSuppliers = ({ onRequestClose }) => {
   const dateFormat = 'MMMM D, YYYY';
 
   dayjs.extend(customParseFormat);
-  dayjs('January 25, 1995', 'MMMM D, YYYY');
-
+  
+  
   return (
     <ModalBody>
       <h2>Add a new suppliers</h2>
@@ -126,8 +126,8 @@ export const AddSuppliers = ({ onRequestClose }) => {
             <option value="status" selected hidden>
               Status
             </option>
-            <option value="active">Active</option>
-            <option value="deactive">Deactive</option>
+            <option value="Active">Active</option>
+            <option value="Deactive">Deactive</option>
           </StyledSelect>
           <p>{errors.status?.message}</p>
         </InputWrapper>

@@ -13,12 +13,14 @@ import { BtnChange, BtnChangeWrapper } from './ProductsTable.styled';
 import { PopUp } from '../../PopUp/PopUp';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProduct, getProducts } from '../../../redux/pharmacy/pharmacyOperations';
+import {
+  deleteProduct,
+  getProducts,
+} from '../../../redux/pharmacy/pharmacyOperations';
 import { selectProducts } from '../../../redux/pharmacy/pharmacySelectors';
 import { Popover } from 'antd';
 import sprite from '../../../assets/sprite.svg';
-import noImg from '../../../assets/noImg.png';
-
+import noImg from '../../../assets/noImg.jpg';
 
 export const ProductsTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -88,7 +90,9 @@ export const ProductsTable = () => {
                         title="Caution!"
                         trigger="hover"
                       >
-                        <BtnChange onClick={()=>dispatch(deleteProduct(item._id))}>
+                        <BtnChange
+                          onClick={() => dispatch(deleteProduct(item._id))}
+                        >
                           <svg>
                             <use href={`${sprite}#icon-trash`} />
                           </svg>

@@ -8,7 +8,7 @@ import {
   TableBodyThumb,
   Wrapper,
 } from './RecentCustomTable.styled';
-import noImg from '../../../assets/noImg.png';
+import noImg from '../../../assets/noImg.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDashboard } from '../../../redux/pharmacy/pharmacySelectors';
 import { useEffect } from 'react';

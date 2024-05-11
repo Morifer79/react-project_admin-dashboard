@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrders } from '../../../redux/pharmacy/pharmacyOperations';
 import { selectOrders } from '../../../redux/pharmacy/pharmacySelectors';
-import noImg from '../../../assets/noImg.png';
+import noImg from '../../../assets/noImg.jpg';
 
 export const OrdersTable = () => {
   const [page, setPage] = useState(1);

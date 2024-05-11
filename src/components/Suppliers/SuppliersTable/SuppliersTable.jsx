@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectSuppliers } from '../../../redux/pharmacy/pharmacySelectors';
 import { getSuppliers } from '../../../redux/pharmacy/pharmacyOperations';
 import { Popover } from 'antd';
+import { changeDate } from '../../../helpers/changeDate';
 import sprite from '../../../assets/sprite.svg';
 
 export const SuppliersTable = () => {
@@ -75,7 +76,7 @@ export const SuppliersTable = () => {
                   </FirstRow>
                   <td>{item.address}</td>
                   <td>{item.suppliers}</td>
-                  <td>{item.date}</td>
+                  <td>{changeDate(item.date)}</td>
                   <td>{item.amount}</td>
                   <td>
                     <StyledStatus

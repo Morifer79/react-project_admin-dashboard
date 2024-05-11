@@ -57,14 +57,16 @@ export const EditProduct = ({onRequestClose, item}) => {
           >
             <option value={item.category} selected>
               {item.category}
-            </option>
-            <option value="medicine">Medicine</option>
-            <option value="heart">Heart</option>
-            <option value="head">Head</option>
-            <option value="hand">Hand</option>
-            <option value="leg">Leg</option>
-            <option value="dental-care">Dental Care</option>
-            <option value="skin-care">Skin Care</option>
+              </option>
+            <option value="Medicine">Medicine</option>
+            <option value="Head">Head</option>
+            <option value="Hand">Hand</option>
+            <option value="Dental Care">Dental Care</option>
+            <option value="Skin Care">Skin Care</option>
+            <option value="Eye Care">Eye Care</option>
+            <option value="Vitamins & Supplements">Vitamins & Supplements</option>
+            <option value="Orthopedic Products">Orthopedic Products</option>
+            <option value="Baby Care">Baby Care</option>
           </StyledSelect>
           <p>{errors.category?.message}</p>
         </InputWrapper>
