@@ -1,4 +1,4 @@
-import{b as P,t as m,r as Se,aI as xe,aJ as Ke,ao as Me,as as Ye,j as H,s as Ve}from"./index-CiCklJd_.js";const ln=P.div`
+import{b as P,t as m,r as Se,aI as xe,aJ as Ke,ao as Me,as as Ye,j as H,s as Ve}from"./index-BecnCk4R.js";const ln=P.div`
   @media (width > 767px) {
     padding-inline: ${m.spacing(10)};
   }

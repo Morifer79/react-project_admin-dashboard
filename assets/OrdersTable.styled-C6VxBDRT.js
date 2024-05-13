@@ -1,4 +1,4 @@
-import{b as e,t as i}from"./index-CiCklJd_.js";const a=e.form`
+import{b as e,t as i}from"./index-BecnCk4R.js";const a=e.form`
   margin-block-start: ${i.spacing(20)};
   display: flex;
   gap: ${i.spacing(4)};
