@@ -16,7 +16,7 @@ const productSchema = yup.object({
   price: yup.number(),
 });
 
-export const EditProduct = ({onRequestClose, item}) => {
+export const EditProduct = ({ onRequestClose, item }) => {
   const dispatch = useDispatch();
 
   const {
@@ -55,16 +55,18 @@ export const EditProduct = ({onRequestClose, item}) => {
             {...register('category')}
             style={{ borderColor: errors.category && '#E85050' }}
           >
-            <option value={item.category} selected>
+            <option defaultValue={item.category}>
               {item.category}
-              </option>
+            </option>
             <option value="Medicine">Medicine</option>
             <option value="Head">Head</option>
             <option value="Hand">Hand</option>
             <option value="Dental Care">Dental Care</option>
             <option value="Skin Care">Skin Care</option>
             <option value="Eye Care">Eye Care</option>
-            <option value="Vitamins & Supplements">Vitamins & Supplements</option>
+            <option value="Vitamins & Supplements">
+              Vitamins & Supplements
+            </option>
             <option value="Orthopedic Products">Orthopedic Products</option>
             <option value="Baby Care">Baby Care</option>
           </StyledSelect>

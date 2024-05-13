@@ -22,6 +22,7 @@ import sprite from '../../../assets/sprite.svg';
 
 export const SuppliersTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const suppliers = useSelector(selectSuppliers);
@@ -31,8 +32,9 @@ export const SuppliersTable = () => {
   const toBack = () => (page === 1 ? undefined : setPage(page - 1));
   const toForward = () => (page === totalPages ? undefined : setPage(page + 1));
 
-  const openModal = () => {
+  const openModal = item => {
     setIsModalOpen(true);
+    setSelectedItem(item);
     document.body.style.overflow = 'hidden';
   };
 
@@ -69,36 +71,31 @@ export const SuppliersTable = () => {
               <HeaderSubTitle>Action</HeaderSubTitle>
             </tr>
             {suppliers.result?.map(item => (
-              <>
-                <tr key={item._id}>
-                  <FirstRow>
-                    <span>{item.name}</span>
-                  </FirstRow>
-                  <td>{item.address}</td>
-                  <td>{item.suppliers}</td>
-                  <td>{changeDate(item.date)}</td>
-                  <td>{item.amount}</td>
-                  <td>
-                    <StyledStatus
-                      prop={capitalizeFirstLetter(item.status)}
-                      $variant={capitalizeFirstLetter(item.status)}
-                    />
-                  </td>
-                  <td>
-                    <Popover content="Click to edit" trigger="hover">
-                      <BtnOvalChange onClick={openModal}>
-                        <svg>
-                          <use href={`${sprite}#icon-edit`} />
-                        </svg>
-                        <span>Edit</span>
-                      </BtnOvalChange>
-                    </Popover>
-                  </td>
-                </tr>
-                <PopUp isOpen={isModalOpen} onRequestClose={closeModal}>
-                  <EditSuppliers onRequestClose={closeModal} item={item} />
-                </PopUp>
-              </>
+              <tr key={item._id}>
+                <FirstRow>
+                  <span>{item.name}</span>
+                </FirstRow>
+                <td>{item.address}</td>
+                <td>{item.suppliers}</td>
+                <td>{changeDate(item.date)}</td>
+                <td>{item.amount}</td>
+                <td>
+                  <StyledStatus
+                    prop={capitalizeFirstLetter(item.status)}
+                    $variant={capitalizeFirstLetter(item.status)}
+                  />
+                </td>
+                <td>
+                  <Popover content="Click to edit" trigger="hover">
+                    <BtnOvalChange onClick={() => openModal(item)}>
+                      <svg>
+                        <use href={`${sprite}#icon-edit`} />
+                      </svg>
+                      <span>Edit</span>
+                    </BtnOvalChange>
+                  </Popover>
+                </td>
+              </tr>
             ))}
           </tbody>
         </Table>
@@ -122,6 +119,11 @@ export const SuppliersTable = () => {
           🔽
         </button>
       </BtnWrapper>
+      {isModalOpen && (
+        <PopUp isOpen={isModalOpen} onRequestClose={closeModal}>
+          <EditSuppliers onRequestClose={closeModal} item={selectedItem} />
+        </PopUp>
+      )}
     </>
   );
 };

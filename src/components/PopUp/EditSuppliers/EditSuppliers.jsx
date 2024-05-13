@@ -120,11 +120,11 @@ export const EditSuppliers = ({ onRequestClose, item }) => {
             {...register('status')}
             style={{ borderColor: errors.status && '#E85050' }}
           >
-            <option value={item.status} selected>
+            <option defaultValue={item.status}>
               {item.status}
             </option>
-            <option value="active">Active</option>
-            <option value="deactive">Deactive</option>
+            <option value="Active">Active</option>
+            <option value="Deactive">Deactive</option>
           </StyledSelect>
           <p>{errors.status?.message}</p>
         </InputWrapper>

@@ -120,7 +120,7 @@ export const AddSuppliers = ({ onRequestClose }) => {
             {...register('status')}
             style={{ borderColor: errors.status && '#E85050' }}
           >
-            <option value="status" selected hidden>
+            <option defaultValue="status" hidden>
               Status
             </option>
             <option value="Active">Active</option>

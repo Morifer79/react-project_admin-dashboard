@@ -63,7 +63,7 @@ export const AddProduct = ({onRequestClose}) => {
             {...register('category')}
             style={{ borderColor: errors.category && '#E85050' }}
           >
-            <option value="category" selected hidden>
+            <option defaultValue="Category" hidden>
               Category
             </option>
             <option value="Medicine">Medicine</option>
