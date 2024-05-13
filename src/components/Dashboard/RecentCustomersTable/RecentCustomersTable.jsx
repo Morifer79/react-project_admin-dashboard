@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectDashboard } from '../../../redux/pharmacy/pharmacySelectors';
 import { useEffect } from 'react';
 import { getDashboard } from '../../../redux/pharmacy/pharmacyOperations';
+import { changeDate } from '../../../helpers/changeDate';
 
 export const RecentCustomersTable = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ export const RecentCustomersTable = () => {
                 <td>{item.spent}</td>
                 <td>{item.phone}</td>
                 <td>{item.address}</td>
-                <td>{item.register_date}</td>
+                <td>{changeDate(item.register_date)}</td>
               </tr>
             ))}
           </tbody>
