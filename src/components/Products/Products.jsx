@@ -62,8 +62,9 @@ export const Products = () => {
               onClick={handleInputClick}
             />
             <StyledButton
+              icon={changeButton ? false : true}
               prop={changeButton ? 'Reset' : 'Filter'}
-              $variant="filter"
+              $variant={changeButton ? 'add-sup' : 'filter'}
             />
           </StyledForm>
           <FlexWrap>

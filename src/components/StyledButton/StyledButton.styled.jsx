@@ -15,7 +15,7 @@ export const Button = styled.button`
 
   transition: background-color ${theme.transition}, color ${theme.transition};
 
-  &:is(:hover, :focus) {
+  &:hover {
     background-color: ${theme.colors.primaryhover};
   }
 
@@ -36,6 +36,9 @@ export const Button = styled.button`
         line-height: 1.5;
       }
       padding: ${theme.spacing(6.5)} ${theme.spacing(15)};
+      display: flex;
+      flex-direction: row-reverse;
+      gap: ${theme.spacing(5)};
     `};
   ${({ $variant }) =>
     $variant === 'add' &&
@@ -87,7 +90,7 @@ export const Button = styled.button`
       border: 1px solid #59b17a7f;
       background-color: transparent;
       color: ${theme.colors.main};
-      &:is(:hover, :focus) {
+      &:hover {
         border: 1px solid ${theme.colors.primaryhover};
         color: ${theme.colors.light};
       }
