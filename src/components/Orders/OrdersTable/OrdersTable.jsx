@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrders } from '../../../redux/pharmacy/pharmacyOperations';
 import { selectOrders } from '../../../redux/pharmacy/pharmacySelectors';
+import { changeDate } from '../../../helpers/changeDate';
 import noImg from '../../../assets/noImg.jpg';
 
 export const OrdersTable = () => {
@@ -55,7 +56,7 @@ export const OrdersTable = () => {
                 <td>
                   <StyledStatus prop={item.status} $variant={item.status} />
                 </td>
-                <td>{item.order_date}</td>
+                <td>{changeDate(item.order_date)}</td>
               </tr>
             ))}
           </tbody>

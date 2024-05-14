@@ -8,6 +8,7 @@ import { getCustomers } from '../../../redux/pharmacy/pharmacyOperations';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCustomers } from '../../../redux/pharmacy/pharmacySelectors';
+import { changeDate } from '../../../helpers/changeDate';
 import noImg from '../../../assets/noImg.jpg';
 
 export const CustomersTable = () => {
@@ -50,7 +51,7 @@ export const CustomersTable = () => {
                 <td>{item.email}</td>
                 <td>{item.address}</td>
                 <td>{item.phone}</td>
-                <td>{item.register_date}</td>
+                <td>{changeDate(item.register_date)}</td>
               </tr>
             ))}
           </tbody>
