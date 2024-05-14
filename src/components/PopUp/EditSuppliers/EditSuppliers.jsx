@@ -2,7 +2,6 @@ import {
   BtnWrapper,
   ModalBody,
   StyledForm,
-  StyledSelect,
 } from '../AddProduct/AddProduct.styled';
 import { StyledButton } from '../../StyledButton/StyledButton';
 import { InputWrapper, StyledInput } from '../../Auth/Auth.styled';
@@ -12,6 +11,7 @@ import { StyledDatePicker } from '../AddSuppliers/AddSuppliers.styled';
 import { useDispatch } from 'react-redux';
 import { updateSupplier } from '../../../redux/pharmacy/pharmacyOperations';
 import { changeDate } from '../../../helpers/changeDate';
+import Select from 'react-select';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
@@ -46,6 +46,11 @@ export const EditSuppliers = ({ onRequestClose, item }) => {
   };
 
   const dateFormat = 'MMMM D, YYYY'; 
+
+  const options = [
+    { value: 'Active', label: 'Active' },
+    { value: 'Deactive', label: 'Deactive' },
+  ];
 
   return (
     <ModalBody>
@@ -116,16 +121,23 @@ export const EditSuppliers = ({ onRequestClose, item }) => {
         </InputWrapper>
 
         <InputWrapper>
-          <StyledSelect
-            {...register('status')}
-            style={{ borderColor: errors.status && '#E85050' }}
-          >
-            <option defaultValue={item.status}>
-              {item.status}
-            </option>
-            <option value="Active">Active</option>
-            <option value="Deactive">Deactive</option>
-          </StyledSelect>
+          <Controller
+            control={control}
+            name="status"
+            rules={{ required: 'Status is required field' }}
+            render={({ fieldState, field: { onChange, name, ref, value } }) => (
+              <Select
+                classNamePrefix="custom-select"
+                status={fieldState.error ? 'error' : undefined}
+                name={name}
+                ref={ref}
+                options={options}
+                placeholder={item.status}
+                value={options.find(option => option.value === value)}
+                onChange={selectedOption => onChange(selectedOption?.value)}
+              />
+            )}
+          />
           <p>{errors.status?.message}</p>
         </InputWrapper>
 

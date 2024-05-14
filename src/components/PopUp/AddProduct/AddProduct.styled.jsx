@@ -6,7 +6,7 @@ export const ModalBody = styled.div`
     padding-inline: ${theme.spacing(10)};
   }
   h2 {
-    margin-block-end: ${theme.spacing(10)};
+    margin-block-end: ${theme.spacing(20)};
     align-self: start;
     font-size: 20px;
     font-weight: 600;
@@ -31,36 +31,12 @@ export const StyledForm = styled.form`
   }
 `;
 
-export const StyledSelect = styled.select`
-  inline-size: 295px;
-  padding: ${theme.spacing(6.5)} ${theme.spacing(9)};
-  border: 1px solid ${theme.colors.alfablue};
-  border-radius: ${theme.radii.xxl};
-  background: ${theme.colors.light};
-  outline: none;
-
-  color: ${theme.colors.main};
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.5;
-
-  @media (width > 767px) {
-    inline-size: 224px;
-  }
-
-  option {
-    border-radius: 12px;
-    background-color: ${theme.colors.primary};
-    color: ${theme.colors.light};
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.5;
-  }
-`;
-
 export const BtnWrapper = styled.div`
   margin-block-start: ${theme.spacing(13)};
   display: flex;
   align-items: center;
   gap: ${theme.spacing(4)};
+  @media (width > 767px) {
+    margin-block-end: ${theme.spacing(10)};
+  }
 `;

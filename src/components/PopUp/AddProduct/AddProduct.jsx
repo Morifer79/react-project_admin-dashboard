@@ -2,14 +2,14 @@ import {
   BtnWrapper,
   ModalBody,
   StyledForm,
-  StyledSelect,
 } from './AddProduct.styled';
 import { StyledButton } from '../../StyledButton/StyledButton';
 import { InputWrapper, StyledInput } from '../../Auth/Auth.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../../redux/pharmacy/pharmacyOperations';
+import Select from 'react-select';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
@@ -34,6 +34,7 @@ export const AddProduct = ({onRequestClose}) => {
     reset,
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(productSchema),
@@ -44,6 +45,18 @@ export const AddProduct = ({onRequestClose}) => {
     reset();
     onRequestClose();
   };
+
+  const options = [
+    { value: 'Medicine', label: 'Medicine' },
+    { value: 'Head', label: 'Head' },
+    { value: 'Hand', label: 'Hand' },
+    { value: 'Dental Care', label: 'Dental Care' },
+    { value: 'Skin Care', label: 'Skin Care' },
+    { value: 'Eye Care', label: 'Eye Care' },
+    { value: 'Vitamins & Supplements', label: 'Vitamins & Supplements' },
+    { value: 'Orthopedic Products', label: 'Orthopedic Products' },
+    { value: 'Baby Care', label: 'Baby Care' },
+  ];
 
   return (
     <ModalBody>
@@ -59,23 +72,23 @@ export const AddProduct = ({onRequestClose}) => {
         </InputWrapper>
 
         <InputWrapper>
-          <StyledSelect
-            {...register('category')}
-            style={{ borderColor: errors.category && '#E85050' }}
-          >
-            <option defaultValue="Category" hidden>
-              Category
-            </option>
-            <option value="Medicine">Medicine</option>
-            <option value="Head">Head</option>
-            <option value="Hand">Hand</option>
-            <option value="Dental Care">Dental Care</option>
-            <option value="Skin Care">Skin Care</option>
-            <option value="Eye Care">Eye Care</option>
-            <option value="Vitamins & Supplements">Vitamins & Supplements</option>
-            <option value="Orthopedic Products">Orthopedic Products</option>
-            <option value="Baby Care">Baby Care</option>
-          </StyledSelect>
+          <Controller
+            control={control}
+            name="category"
+            rules={{ required: 'Status is required field' }}
+            render={({ fieldState, field: { onChange, name, ref, value } }) => (
+              <Select
+                classNamePrefix="custom-select"
+                status={fieldState.error ? 'error' : undefined}
+                name={name}
+                ref={ref}
+                options={options}
+                placeholder="Category"
+                value={options.find(option => option.value === value)}
+                onChange={selectedOption => onChange(selectedOption?.value)}
+              />
+            )}
+          />
           <p>{errors.category?.message}</p>
         </InputWrapper>
 

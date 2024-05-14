@@ -75,12 +75,11 @@ export const pharmacySlice = createSlice({
       .addCase(getSuppliers.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.suppliers = payload;
-        // state.products = [...state.products, payload];
       })
 
       .addCase(addSupplier.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.suppliers.result = [...state.suppliers, payload];
+        state.suppliers.result = [...state.suppliers.result, payload];
       })
 
       .addCase(updateSupplier.fulfilled, (state, { payload }) => {

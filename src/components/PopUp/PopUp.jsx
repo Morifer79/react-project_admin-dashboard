@@ -16,9 +16,6 @@ const customStyles = {
     borderRadius: '12px',
     zIndex: '1300',
     overflowY: 'auto',
-    scrollbarColor: '#888 #e0e0e0',
-    scrollbarWidth: 'thin',
-    backgroundColor: '#FFFFFF',
   },
   overlay: {
     backgroundColor: 'rgba(20, 20, 20, .6)',

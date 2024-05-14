@@ -2,7 +2,6 @@ import {
   BtnWrapper,
   ModalBody,
   StyledForm,
-  StyledSelect,
 } from '../AddProduct/AddProduct.styled';
 import { StyledButton } from '../../StyledButton/StyledButton';
 import { InputWrapper, StyledInput } from '../../Auth/Auth.styled';
@@ -11,11 +10,10 @@ import { Controller, useForm } from 'react-hook-form';
 import { StyledDatePicker } from './AddSuppliers.styled';
 import { useDispatch } from 'react-redux';
 import { addSupplier } from '../../../redux/pharmacy/pharmacyOperations';
-// import customParseFormat from 'dayjs/plugin/customParseFormat';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
 import dayjs from 'dayjs';
 import * as yup from 'yup';
-
 
 const supplierSchema = yup.object({
   name: yup.string().trim().required('Suppliers is required field'),
@@ -29,7 +27,7 @@ const supplierSchema = yup.object({
     .required('Status is required field'),
 });
 
-export const AddSuppliers = ({ onRequestClose }) => {
+export const AddSuppliers = ({onRequestClose}) => {
   const dispatch = useDispatch();
 
   const {
@@ -48,8 +46,13 @@ export const AddSuppliers = ({ onRequestClose }) => {
     onRequestClose();
   };
 
-  const dateFormat = 'MMMM D, YYYY';  
-  
+  const dateFormat = 'MMMM D, YYYY';
+
+  const options = [
+    { value: 'Active', label: 'Active' },
+    { value: 'Deactive', label: 'Deactive' },
+  ];
+
   return (
     <ModalBody>
       <h2>Add a new suppliers</h2>
@@ -116,16 +119,23 @@ export const AddSuppliers = ({ onRequestClose }) => {
         </InputWrapper>
 
         <InputWrapper>
-          <StyledSelect
-            {...register('status')}
-            style={{ borderColor: errors.status && '#E85050' }}
-          >
-            <option defaultValue="status" hidden>
-              Status
-            </option>
-            <option value="Active">Active</option>
-            <option value="Deactive">Deactive</option>
-          </StyledSelect>
+          <Controller
+            control={control}
+            name="status"
+            rules={{ required: 'Status is required field' }}
+            render={({ fieldState, field: { onChange, name, ref, value } }) => (
+              <Select
+                classNamePrefix="custom-select"
+                status={fieldState.error ? 'error' : undefined}
+                name={name}
+                ref={ref}
+                options={options}
+                placeholder="Status"
+                value={options.find(option => option.value === value)}
+                onChange={selectedOption => onChange(selectedOption?.value)}
+              />
+            )}
+          />
           <p>{errors.status?.message}</p>
         </InputWrapper>
 
