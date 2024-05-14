@@ -1,4 +1,4 @@
-import{j as n,aM as t,b as a}from"./index-Bbacg8lX.js";const o="/react-project_admin-dashboard/assets/not-found-D48iDKOS.png",e=a.div`
+import{j as n,aM as t,b as a}from"./index-CPNazQ0l.js";const o="/react-project_admin-dashboard/assets/not-found-D48iDKOS.png",e=a.div`
   block-size: 100vh;
   background: center center / contain no-repeat url(${o});
   button {
